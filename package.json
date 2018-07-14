@@ -7,7 +7,9 @@
     "type": "git",
     "url": "git@github.com:kingstone3/blog.git"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "node server/bin/www"
+  },
   "license": "Apache-2.0",
   "bundleDependencies": [],
   "dependencies": {
