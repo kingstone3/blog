@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "Blog of wangdalei",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kingstone3/blog.git"
+  },
+  "scripts": {},
+  "license": "Apache-2.0",
+  "bundleDependencies": [],
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "webpack": "^4.16.0"
+  }
+}
