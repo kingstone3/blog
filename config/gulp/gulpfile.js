@@ -11,7 +11,7 @@ const webpack = require('webpack');
 const webpackDevConfig = require('../webpack/webpack.dev');
 const webpackProdConfig = require('../webpack/webpack.prod');
 
-const distPath = path.resolve('../../dist');
+const distPath = path.resolve('../../browser/dist');
 
 const webpackTask = function(config) {
   webpack(config, function(error, stats) {
@@ -82,14 +82,12 @@ gulp.task('webpack-prod', function() {
   webpackTask(webpackProdConfig);
 });
 
-gulp.task('watch', [
+gulp.task('build', ['copyStaticFiles', 'scss', 'minify-css', 'webpack-prod']);
+
+gulp.task('default', [
   'copyStaticFiles', 'scss', 'webpack-dev',
 ], function() {
   gulp.watch('../../browser/scss/*.scss', ['scss']);
   gulp.watch('../../browser/templates/**', ['copyTemplates']);
   gulp.watch('../../browser/fonts/**', ['copyFonts']);
-})
-
-gulp.task('build', ['copyStaticFiles', 'scss', 'minify-css', 'webpack-prod']);
-
-gulp.task('default', ['watch']);
+});
