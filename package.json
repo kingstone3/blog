@@ -16,19 +16,19 @@
   "bundleDependencies": [],
   "dependencies": {
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
+    "debug": "~4.1.0",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
+    "http-errors": "~1.7.1",
     "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^9.0.1",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "^8.0.4",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.4",
     "gulp-notify": "^3.2.0",
-    "gulp-postcss": "^7.0.1",
+    "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.1",
     "webpack": "^4.23.1",
