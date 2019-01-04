@@ -1,11 +1,14 @@
 const path = require('path');
 const gulp = require('gulp');
+const eslint = require('gulp-eslint');
+const debug = require('gulp-debug');
 const notify = require('gulp-notify');
 const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
 const rename = require('gulp-rename');
+const autoprefixer = require('autoprefixer');
+const ansiColors = require('ansi-colors');
 
 const webpack = require('webpack');
 const webpackDevConfig = require('../webpack/webpack.dev');
@@ -73,6 +76,15 @@ gulp.task('minify-css', ['scss'], function() {
     }))
     .pipe(gulp.dest(`${distPath}/css`));
 });
+
+gulp.task('eslint', function () {
+  return gulp.src(['../../browser/src/js/*.js'])
+    .pipe(debug({ title: ansiColors.green('eslint:'), showFiles: false }))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
 
 gulp.task('webpack-dev', function() {
   webpackTask(webpackDevConfig);

@@ -24,7 +24,9 @@
     "pug": "2.0.3"
   },
   "devDependencies": {
+    "ansi-colors": "^3.2.3",
     "autoprefixer": "^9.0.1",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-namespaces": "^0.2.4",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -37,8 +39,12 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.4",
+    "gulp-debug": "^4.0.0",
+    "gulp-eslint": "^5.0.0",
     "gulp-notify": "^3.2.0",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
