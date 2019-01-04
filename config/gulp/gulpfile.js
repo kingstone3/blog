@@ -35,11 +35,6 @@ const webpackTask = function(config) {
 }
 
 // @() 的意思是从这一层级开始进行操作
-gulp.task('copyTemplates', function() {
-  return gulp.src('../../browser/src/@(templates)/**')
-    .pipe(gulp.dest(distPath));
-});
-
 gulp.task('copyImages', function() {
   return gulp.src('../../browser/src/@(images)/**')
     .pipe(gulp.dest(distPath));
@@ -55,7 +50,7 @@ gulp.task('copyLibs', function() {
     .pipe(gulp.dest(distPath));
 })
 
-gulp.task('copyStaticFiles', ['copyTemplates', 'copyImages', 'copyFonts', 'copyLibs']);
+gulp.task('copyStaticFiles', ['copyImages', 'copyFonts', 'copyLibs']);
 
 gulp.task('scss', function () {
   return gulp.src('../../browser/src/scss/*.scss')
@@ -100,6 +95,5 @@ gulp.task('default', [
   'copyStaticFiles', 'scss', 'webpack-dev',
 ], function() {
   gulp.watch('../../browser/scss/*.scss', ['scss']);
-  gulp.watch('../../browser/templates/**', ['copyTemplates']);
   gulp.watch('../../browser/fonts/**', ['copyFonts']);
 });

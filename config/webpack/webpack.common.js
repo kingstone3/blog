@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
@@ -43,6 +44,12 @@ module.exports = {
   },
 
   plugins: [
+    new HtmlWebpackPlugin({
+      template: '../../server/templates/index.template',
+      filename: `${__dirname}/../../server/templates/pug/index.pug`,
+      inject: false,
+    }),
+
     new WebpackNotifierPlugin({
       title: 'Webpack Finished',
       alwaysNotify: true,
