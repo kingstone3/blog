@@ -31,31 +31,31 @@ const webpackTask = function(config) {
   });
 }
 
-
+// @() 的意思是从这一层级开始进行操作
 gulp.task('copyTemplates', function() {
-  return gulp.src('../../browser/@(templates)/**')
+  return gulp.src('../../browser/src/@(templates)/**')
     .pipe(gulp.dest(distPath));
 });
 
 gulp.task('copyImages', function() {
-  return gulp.src('../../browser/@(images)/**')
+  return gulp.src('../../browser/src/@(images)/**')
     .pipe(gulp.dest(distPath));
 })
 
 gulp.task('copyFonts', function() {
-  return gulp.src('../../browser/@(fonts)/**')
+  return gulp.src('../../browser/src/@(fonts)/**')
     .pipe(gulp.dest(distPath));
 })
 
 gulp.task('copyLibs', function() {
-  return gulp.src('../../browser/@(libs)/**')
+  return gulp.src('../../browser/src/@(libs)/**')
     .pipe(gulp.dest(distPath));
 })
 
 gulp.task('copyStaticFiles', ['copyTemplates', 'copyImages', 'copyFonts', 'copyLibs']);
 
 gulp.task('scss', function () {
-  return gulp.src('../../browser/scss/*.scss')
+  return gulp.src('../../browser/src/scss/*.scss')
     .pipe(sass().on('error', sass.logError))
     .on('error', notify.onError(function (error) {
       return error.message;

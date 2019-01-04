@@ -5,20 +5,20 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
   entry: {
-
+    blog: '../../browser/src/js',
   },
 
   output: {
-    path: path.resolve(__dirname, '../../browser/dist'),
+    path: path.resolve(__dirname, '../../browser/dist/js'),
     filename: '[name].js',
     chunkFilename: '[name].js',
-    publicPath: '/dist/'
+    publicPath: '/dist/js'
   },
 
   module: {
     rules: [
       {
-        test:    /\.js(x)?$/,
+        test:    /\.js?$/,
         exclude: /node_modules/,
         use:  ['babel-loader?cacheDirectory'],
       },
@@ -26,22 +26,28 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.jsx', '.js'],
+    extensions: ['.js'],
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: 'initial',
+      cacheGroups: {
+        vendors: {
+          name: 'chunk_vendors',
+          chunks: 'initial',
+          minChunks: 2,
+        },
+      },
+    },
   },
 
   plugins: [
     new WebpackNotifierPlugin({
-      title:        'Webpack Finished',
+      title: 'Webpack Finished',
       alwaysNotify: true,
     }),
 
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh/),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: '',
-      chunks: [
-
-      ],
-    }),
   ],
 };

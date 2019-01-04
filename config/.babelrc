@@ -1,0 +1,44 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "safari >= 9"]
+        },
+        "production": {
+          "plugins": [
+            [
+              {
+                "mode": "remove",
+                "removeImport": true,
+                "ignoreFilenames": ["node_modules"],
+              }
+            ]
+          ]
+        }
+      }
+    ],
+  ],
+  "plugins": [
+    [
+      "namespaces",
+      {
+        "namespaces": {
+          "c": "../browser/src/js/components",
+          "utils": "../browser/src/js/utils",
+          "constants": '../browser/src/js/constants',
+          "blog": "../browser/src/js",
+          "libs": "../browser/src/libs",
+        }
+      }
+    ],
+    "syntax-dynamic-import",
+    "transform-async-to-generator",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-function-bind",
+    "transform-object-rest-spread",
+    "transform-runtime"
+  ]
+}
