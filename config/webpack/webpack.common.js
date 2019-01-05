@@ -19,15 +19,22 @@ module.exports = {
   module: {
     rules: [
       {
-        test:    /\.js?$/,
+        test: /\.js?$/,
         exclude: /node_modules/,
-        use:  ['babel-loader?cacheDirectory'],
+        use:  ['babel-loader?cacheDirectory']
       },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }
     ],
   },
 
   resolve: {
     extensions: ['.js'],
+    alias: {
+      'vue': 'vue/dist/vue.js'
+    }
   },
 
   optimization: {
