@@ -8,10 +8,10 @@
     "url": "git@github.com:kingstone3/blog.git"
   },
   "scripts": {
-    "start": "pm2 start server/bin/www",
+    "start": "pm2 restart server/bin/www --name 'blog'",
     "start-dev": "nodemon server/bin/www --config config/nodemon/nodemon.json",
-    "build-prod": "browser/bin/build-prod.sh",
-    "build-dev": "browser/bin/build-dev.sh"
+    "gulp": "cd config/gulp && gulp",
+    "deploy": "browser/bin/deploy.sh"
   },
   "license": "Apache-2.0",
   "bundleDependencies": [],
@@ -39,6 +39,9 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
+    "broccoli": "^1.1.4",
+    "broccoli-asset-rev": "^2.6.0",
+    "broccoli-cli": "^1.0.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "gulp": "^3.9.1",
