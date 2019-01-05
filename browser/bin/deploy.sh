@@ -51,5 +51,5 @@ echo "done"
 
 # on server
 # cd /etc/blog/
-# yarn install --prod
+# npm install
 # npm start
