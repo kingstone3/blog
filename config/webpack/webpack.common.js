@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     blog: '../../browser/src/js',
+    components: '../../browser/src/js/components',
   },
 
   output: {
@@ -54,6 +55,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: '../../server/templates/index.template',
       filename: `${__dirname}/../../server/templates/pug/index.pug`,
+      inject: false,
+    }),
+
+    new HtmlWebpackPlugin({
+      template: '../../server/templates/components.template',
+      filename: `${__dirname}/../../server/templates/pug/components.pug`,
       inject: false,
     }),
 
