@@ -25,11 +25,11 @@
       "namespaces",
       {
         "namespaces": {
-          "c": "../browser/src/js/components",
-          "utils": "../browser/src/js/utils",
-          "constants": '../browser/src/js/constants',
-          "blog": "../browser/src/js",
-          "libs": "../browser/src/libs",
+          "c": "../../browser/src/js/components",
+          "utils": "../../browser/src/js/utils",
+          "constants": '../../browser/src/js/constants',
+          "blog": "../../browser/src/js",
+          "libs": "../../browser/src/libs",
         }
       }
     ],
