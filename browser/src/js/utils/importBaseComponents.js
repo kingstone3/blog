@@ -2,13 +2,14 @@ import Vue from 'vue'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 
+// require.context 是 webpack 的方法，在编译阶段执行
 const requireComponent = require.context(
   // 其组件目录的相对路径
-  './base',
+  '../components/base',
   // 是否查询其子目录
   false,
   // 匹配基础组件文件名的正则表达式
-  // /Base[A-Z]\w+\.(vue|js)$/
+  /base[A-Z]\w+\.(vue|js)$/
 )
 
 requireComponent.keys().forEach(fileName => {

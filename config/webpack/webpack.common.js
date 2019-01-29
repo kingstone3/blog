@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 
 module.exports = {
@@ -32,10 +33,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js'],
-    alias: {
-      'vue': 'vue/dist/vue.js'
-    }
+    extensions: ['.js', '.vue', '.json']
   },
 
   optimization: {
@@ -52,6 +50,8 @@ module.exports = {
   },
 
   plugins: [
+    new VueLoaderPlugin(),
+
     new HtmlWebpackPlugin({
       template: '../../server/templates/index.template',
       filename: `${__dirname}/../../server/templates/pug/index.pug`,

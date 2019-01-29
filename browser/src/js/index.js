@@ -1,6 +1,4 @@
-import Vue from 'vue';
-
-import * as baseComponents from '<c>/importBaseComponents';
+import * as baseComponents from '<utils>/importBaseComponents';
 
 new Vue({
   el: '#app',
