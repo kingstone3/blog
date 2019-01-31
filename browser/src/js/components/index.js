@@ -6,5 +6,5 @@ import Components from './components';
 
 new Vue({
   el: '#app',
-  render: createElement => createElement(Components)
+  render: h => h(Components)
 });
