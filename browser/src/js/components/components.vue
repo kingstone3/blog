@@ -6,7 +6,7 @@
       ='Button'
 </template>
 
-<script>
+<script lang='babel'>
   export default {
     methods: {
       handleClick() {

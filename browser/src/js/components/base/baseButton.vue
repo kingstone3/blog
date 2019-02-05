@@ -16,17 +16,29 @@
     slot
 </template>
 
+<!--
+  每个组件都可以定义自己的 style，
+  除此之外，还可以在 gulp 时编译 scss 文件，
+  在 pug 模板中引入 css
+-->
+<style lang='scss'>
+  .disabled{
+    color: red
+  }
+</style>
 
 <!--
   通过 disabled prop 和 isClick data 分别来控制组件的 disabled 状态，
   prop 是用户控制；isClick 是组件内部控制。
 -->
-<script>
+<script lang='babel'>
   export default {
     name: 'baseButton',
-    data: () => ({
-      isClick: false
-    }),
+    data() {
+      return {
+        isClick: false
+      }
+    },
     props: {
       type: {
         type: String,

@@ -30,6 +30,14 @@ module.exports = {
         loader: 'vue-loader'
       },
       {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
         test: /\.pug$/,
         oneOf: [
           // 这条规则应用到 Vue 组件内的 `<template lang="pug">`
