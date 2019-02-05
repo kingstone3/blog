@@ -22,7 +22,8 @@
     "helmet": "^3.15.0",
     "http-errors": "~1.7.1",
     "morgan": "~1.9.0",
-    "pug": "2.0.3"
+    "pug": "^2.0.3",
+    "raw-loader": "^1.0.0"
   },
   "devDependencies": {
     "ansi-colors": "^3.2.3",
@@ -57,6 +58,7 @@
     "html-webpack-plugin": "^3.2.0",
     "lodash": "^4.17.11",
     "nodemon": "^1.18.5",
+    "pug-plain-loader": "^1.0.0",
     "vue": "^2.5.22",
     "vue-loader": "^15.5.0",
     "vue-router": "^3.0.2",

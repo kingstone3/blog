@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import upperFirst from 'lodash/upperFirst'
-import camelCase from 'lodash/camelCase'
+import Vue from 'vue';
+import upperFirst from 'lodash/upperFirst';
+import camelCase from 'lodash/camelCase';
 
 // require.context 是 webpack 的方法，在编译阶段执行
 const requireComponent = require.context(
@@ -10,11 +10,11 @@ const requireComponent = require.context(
   false,
   // 匹配基础组件文件名的正则表达式
   /base[A-Z]\w+\.(vue|js)$/
-)
+);
 
 requireComponent.keys().forEach(fileName => {
   // 获取组件配置
-  const componentConfig = requireComponent(fileName)
+  const componentConfig = requireComponent(fileName);
 
   // 获取组件的 PascalCase 命名
   const componentName = upperFirst(
@@ -22,7 +22,7 @@ requireComponent.keys().forEach(fileName => {
       // 剥去文件名开头的 `./` 和结尾的扩展名
       fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
     )
-  )
+  );
 
   // 全局注册组件
   Vue.component(
@@ -31,5 +31,5 @@ requireComponent.keys().forEach(fileName => {
     // 那么就会优先使用 `.default`，
     // 否则回退到使用模块的根。
     componentConfig.default || componentConfig
-  )
-})
+  );
+});
