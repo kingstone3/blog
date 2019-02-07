@@ -11,6 +11,7 @@
     "start": "pm2 restart server/bin/www --name 'blog'",
     "start-dev": "nodemon server/bin/www --config config/nodemon/nodemon.json",
     "gulp": "cd config/gulp && gulp",
+    "gulp-build": "cd config/gulp && gulp build",
     "deploy": "browser/bin/deploy.sh"
   },
   "license": "Apache-2.0",
