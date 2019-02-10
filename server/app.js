@@ -34,7 +34,11 @@ app.use(session({
   }),
   secret: '7QTwRNbHuLfgNdsexorhFYsh',
   resave: true,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    secure: true,
+    sameSite: true
+  }
 }));
 
 app.use(helmet());
