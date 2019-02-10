@@ -1,20 +1,41 @@
+// Module import
+var connectRedis = require('connect-redis');
+var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
 var helmet = require('helmet');
 var logger = require('morgan');
+var path = require('path');
+var session = require('express-session');
 
+var CONFIG = require('./config');
+
+// Router import
 var indexRouter = require('./routes/index');
 var _componentsRouter = require('./routes/componentsRouter');
 
+// Set Express app
 var app = express();
 
-// view engine setup
+// Set view engine setup
 app.set('views', path.join(__dirname, './templates/pug'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+
+// Set Redis session
+var RedisStore = connectRedis(session);
+
+app.use(session({
+  store: new RedisStore({
+    host: 'redis',
+    port: CONFIG.REDIS_PORT,
+    db: 0
+  }),
+  secret: '7QTwRNbHuLfgNdsexorhFYsh',
+  resave: true,
+  saveUninitialized: false
+}));
 
 app.use(helmet());
 app.use(express.json());

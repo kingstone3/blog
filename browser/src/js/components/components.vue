@@ -2,14 +2,14 @@
   div
     div
       ='Base Components'
-    base-button(@click='handleClick')
+    base-button(@click='handleBaseButtonClick')
       ='Button'
 </template>
 
 <script lang='babel'>
   export default {
     methods: {
-      handleClick() {
+      handleBaseButtonClick() {
         return new Promise((res, rej) => {
           setTimeout(() => res(), 2000);
         })
