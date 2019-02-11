@@ -10,8 +10,8 @@
   "scripts": {
     "start-website": "pm2 restart servers/website/bin/www --name 'website'",
     "start-website-account": "pm2 restart servers/website-account/bin/www --name 'website-account'",
-    "start-website-dev": "nodemon servers/website/bin/www --config config/nodemon/nodemon.json",
-    "start-website-account-dev": "nodemon servers/website-account/bin/www --config config/nodemon/nodemon.json",
+    "start-website-dev": "nodemon servers/website/bin/www --config config/nodemon/website.json",
+    "start-website-account-dev": "nodemon servers/website-account/bin/www --config config/nodemon/website-account.json",
     "gulp": "cd config/gulp && gulp",
     "gulp-build": "cd config/gulp && gulp build",
     "deploy-build": "sh browsers/bin/deploy.sh"

@@ -7,7 +7,7 @@ block content
 
 block bottom_scripts
   script(
-    src='<%= htmlWebpackPlugin.files.chunks.chunk_vendors.entry %>'
+    src='<%= htmlWebpackPlugin.files.chunks.vendors.entry %>'
   )
   script(
     src='<%= htmlWebpackPlugin.files.chunks.website_account.entry %>'

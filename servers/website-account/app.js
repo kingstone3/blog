@@ -17,7 +17,7 @@ var indexRouter = require('./routes/index');
 var app = express();
 
 // Set view engine setup
-app.set('views', path.join(__dirname, '../browsers/dist/website-account/templates/pug'));
+app.set('views', path.join(__dirname, '../../browsers/dist/website-account/templates/pug'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));

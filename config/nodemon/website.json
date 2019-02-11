@@ -4,6 +4,7 @@
     ".git",
     "config/**/*",
     "node_modules/**/*",
+    "servers/website-account/**/*",
     "browsers/**/*"
   ],
   "verbose": true,

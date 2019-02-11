@@ -66,7 +66,7 @@ module.exports = {
       chunks: 'initial',
       cacheGroups: {
         vendors: {
-          name: 'chunk_vendors',
+          name: 'vendors',
           chunks: 'initial',
           minChunks: 2,
         },
