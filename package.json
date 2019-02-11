@@ -13,7 +13,8 @@
     "start-website-dev": "nodemon servers/website/bin/www --config config/nodemon/nodemon.json",
     "start-website-account-dev": "nodemon servers/website-account/bin/www --config config/nodemon/nodemon.json",
     "gulp": "cd config/gulp && gulp",
-    "gulp-build": "cd config/gulp && gulp build"
+    "gulp-build": "cd config/gulp && gulp build",
+    "deploy-build": "sh browsers/bin/deploy.sh"
   },
   "license": "Apache-2.0",
   "bundleDependencies": [],
