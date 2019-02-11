@@ -2,9 +2,9 @@ import Vue from 'vue';
 
 import * as baseComponents from '<utils>/importBaseComponents';
 
-import Components from './components';
+import App from './app';
 
 new Vue({
   el: '#app',
-  render: h => h(Components)
+  render: h => h(App)
 });

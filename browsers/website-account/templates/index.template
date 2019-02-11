@@ -1,0 +1,14 @@
+extends layout
+
+block head_stylesheets
+
+block content
+  div#app
+
+block bottom_scripts
+  script(
+    src='<%= htmlWebpackPlugin.files.chunks.chunk_vendors.entry %>'
+  )
+  script(
+    src='<%= htmlWebpackPlugin.files.chunks.website_account.entry %>'
+  )

@@ -9,6 +9,5 @@ module.exports = Merge(commonConfig, {
   output: {
     filename: 'chunk_[name].[hash].js',
     chunkFilename: 'chunk_[name].[chunkhash].js',
-    publicPath: '/dist/js',
   },
 })

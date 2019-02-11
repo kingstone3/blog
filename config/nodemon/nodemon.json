@@ -4,7 +4,7 @@
     ".git",
     "config/**/*",
     "node_modules/**/*",
-    "browser/**/*"
+    "browsers/**/*"
   ],
   "verbose": true,
   "execMap": {
