@@ -39,7 +39,7 @@ const webpackTask = function(config, done) {
 }
 
 gulp.task('eslint', function () {
-  return gulp.src(['../../browsers/(website|website-account)/js/*.js'])
+  return gulp.src(['../../browsers/(website-admin|website-account)/js/*.js'])
     .pipe(debug({ title: ansiColors.green('eslint:'), showFiles: false }))
     .pipe(eslint())
     .pipe(eslint.format())
@@ -48,7 +48,7 @@ gulp.task('eslint', function () {
 
 // @() 的意思是从这一层级开始进行操作
 gulp.task('copyTemplates', function() {
-  return gulp.src('../../browsers/@(website|website-account)/templates/pug/*')
+  return gulp.src('../../browsers/@(website-admin|website-account)/templates/pug/*')
     .pipe(gulp.dest(distPath));
 });
 

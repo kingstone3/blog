@@ -10,5 +10,5 @@ block bottom_scripts
     src='<%= htmlWebpackPlugin.files.chunks.vendors.entry %>'
   )
   script(
-    src='<%= htmlWebpackPlugin.files.chunks.website.entry %>'
+    src='<%= htmlWebpackPlugin.files.chunks.website_admin.entry %>'
   )

@@ -8,9 +8,9 @@
     "url": "git@github.com:kingstone3/website.git"
   },
   "scripts": {
-    "start-website": "pm2 restart servers/website/bin/www --name 'website'",
+    "start-website-admin": "pm2 restart servers/website-admin/bin/www --name 'website-admin'",
     "start-website-account": "pm2 restart servers/website-account/bin/www --name 'website-account'",
-    "start-website-dev": "nodemon servers/website/bin/www --config config/nodemon/website.json",
+    "start-website-admin-dev": "nodemon servers/website-admin/bin/www --config config/nodemon/website-admin.json",
     "start-website-account-dev": "nodemon servers/website-account/bin/www --config config/nodemon/website-account.json",
     "gulp": "cd config/gulp && gulp",
     "gulp-build": "cd config/gulp && gulp build",

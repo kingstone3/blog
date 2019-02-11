@@ -7,8 +7,8 @@ const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   entry: {
-    website: '../../browsers/website/js',
     website_account: '../../browsers/website-account/js',
+    website_admin: '../../browsers/website-admin/js',
 
     // 网站上线后删除这个 bundle
     components: '../../browsers/common/components',
@@ -78,14 +78,14 @@ module.exports = {
     new VueLoaderPlugin(),
 
     new HtmlWebpackPlugin({
-      template: '../../browsers/website/templates/index.template',
-      filename: `${__dirname}/../../browsers/dist/website/templates/pug/index.pug`,
+      template: '../../browsers/website-admin/templates/index.template',
+      filename: `${__dirname}/../../browsers/dist/website-admin/templates/pug/index.pug`,
       inject: false,
     }),
 
     new HtmlWebpackPlugin({
-      template: '../../browsers/website/templates/components.template',
-      filename: `${__dirname}/../../browsers/dist/website/templates/pug/components.pug`,
+      template: '../../browsers/website-admin/templates/components.template',
+      filename: `${__dirname}/../../browsers/dist/website-admin/templates/pug/components.pug`,
       inject: false,
     }),
 

@@ -18,7 +18,7 @@ var _componentsRouter = require('./routes/componentsRouter');
 var app = express();
 
 // Set view engine setup
-app.set('views', path.join(__dirname, '../../browsers/dist/website/templates/pug'));
+app.set('views', path.join(__dirname, '../../browsers/dist/website-admin/templates/pug'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));

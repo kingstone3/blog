@@ -4,7 +4,7 @@
     ".git",
     "config/**/*",
     "node_modules/**/*",
-    "servers/website/**/*",
+    "servers/website-admin/**/*",
     "browsers/**/*"
   ],
   "verbose": true,

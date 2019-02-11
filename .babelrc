@@ -29,7 +29,7 @@
           "utils": "../../browsers/common/utils",
           "constants": '../../browsers/common/constants',
           "libs": "../../browsers/libs",
-          "website": "../../browsers/website/js",
+          "website-admin": "../../browsers/website-admin/js",
           "website-account": "../../browsers/website-account/js",
         }
       }
