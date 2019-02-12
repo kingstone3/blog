@@ -65,10 +65,8 @@
         if (clickPromise instanceof Promise) {
           clickPromise.then(() => {
             this.isClick = false;
-            console.log(123)
           }).catch(() => {
             this.isClick = false;
-            console.log(456)
           });
         } else {
           this.isClick = false;
