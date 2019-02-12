@@ -12,7 +12,7 @@
               {
                 "mode": "remove",
                 "removeImport": true,
-                "ignoreFilenames": ["node_modules"],
+                "ignoreFilenames": ["node_modules"]
               }
             ]
           ]
@@ -30,7 +30,7 @@
           "constants": '../../browsers/common/constants',
           "libs": "../../browsers/libs",
           "website-admin": "../../browsers/website-admin/js",
-          "website-account": "../../browsers/website-account/js",
+          "website-account": "../../browsers/website-account/js"
         }
       }
     ],

@@ -31,7 +31,7 @@ app.use(session({
     port: COMMON_CONFIG.REDIS_PORT,
     db: 0
   }),
-  secret: '7QTwRNbHuLfgNdsexorhFYsh',
+  secret: COMMON_CONFIG.SESSION_SECRET.account,
   resave: true,
   saveUninitialized: false,
   cookie: {

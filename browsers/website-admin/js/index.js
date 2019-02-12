@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import * as baseComponents from '<utils>/importBaseComponents';
+import '<utils>/importBaseComponents';
 
 import App from './app';
 

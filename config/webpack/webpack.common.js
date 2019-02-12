@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        use: ['vue-loader']
       },
       {
         test: /\.scss$/,
@@ -56,6 +56,8 @@ module.exports = {
       }
     ],
   },
+
+  devtool: 'source-map',
 
   resolve: {
     extensions: ['.js', '.vue', '.json']

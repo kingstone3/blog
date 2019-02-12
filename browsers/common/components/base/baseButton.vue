@@ -31,7 +31,7 @@
   通过 disabled prop 和 isClick data 分别来控制组件的 disabled 状态，
   prop 是用户控制；isClick 是组件内部控制。
 -->
-<script lang='babel'>
+<script>
   export default {
     name: 'baseButton',
     data() {

@@ -6,12 +6,14 @@
       ='Button'
 </template>
 
-<script lang='babel'>
+<script>
+  import { apiRequest } from '<utils>/request';
+
   export default {
     methods: {
       handleBaseButtonClick() {
-        return new Promise((res, rej) => {
-          setTimeout(() => res(), 2000);
+        return apiRequest({
+          body: '123'
         })
       }
     }
