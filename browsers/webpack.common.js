@@ -7,15 +7,15 @@ const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   entry: {
-    website_account: '../../browsers/website-account/js',
-    website_admin: '../../browsers/website-admin/js',
+    website_account: './website-account/js',
+    website_admin: './website-admin/js',
 
     // 网站上线后删除这个 bundle
-    components: '../../browsers/common/components',
+    components: './common/components',
   },
 
   output: {
-    path: path.resolve(__dirname, '../../browsers/dist/js'),
+    path: path.resolve(__dirname, './dist/js'),
     filename: 'chunk_[name].js',
     chunkFilename: 'chunk_[name].js',
     publicPath: '/dist/js'
@@ -78,21 +78,21 @@ module.exports = {
     new VueLoaderPlugin(),
 
     new HtmlWebpackPlugin({
-      template: '../../browsers/website-admin/templates/index.template',
-      filename: `${__dirname}/../../browsers/dist/website-admin/templates/pug/index.pug`,
+      template: './website-admin/templates/index.template',
+      filename: `${__dirname}/./dist/website-admin/templates/pug/index.pug`,
       inject: false,
     }),
 
     new HtmlWebpackPlugin({
-      template: '../../browsers/website-admin/templates/components.template',
-      filename: `${__dirname}/../../browsers/dist/website-admin/templates/pug/components.pug`,
+      template: './website-admin/templates/components.template',
+      filename: `${__dirname}/./dist/website-admin/templates/pug/components.pug`,
       inject: false,
     }),
 
     // 网站上线后删除这个操作
     new HtmlWebpackPlugin({
-      template: '../../browsers/website-account/templates/index.template',
-      filename: `${__dirname}/../../browsers/dist/website-account/templates/pug/index.pug`,
+      template: './website-account/templates/index.template',
+      filename: `${__dirname}/./dist/website-account/templates/pug/index.pug`,
       inject: false,
     }),
 

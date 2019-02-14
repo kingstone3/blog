@@ -16,11 +16,12 @@ const COMMON_CONFIG = require('<common>/config');
 // Router import
 const indexRouter = require('./routes/index');
 
+
 // Set Express app
 const app = express();
 
 // Set view engine setup
-app.set('views', path.join(__dirname, '../../browsers/dist/website-account/templates/pug'));
+app.set('views', path.join(__dirname, '../browsers/dist/website-account/templates/pug'));
 app.set('view engine', 'pug');
 
 const accessStream = fs.createWriteStream(

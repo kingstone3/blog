@@ -15,9 +15,9 @@
       "namespaces",
       {
         "namespaces": {
-          "common": "servers/common",
-          "account": "servers/website-account",
-          "admin": "servers/website-admin"
+          "common": "./common",
+          "account": "./website-account",
+          "admin": "./website-admin"
         }
       }
     ],

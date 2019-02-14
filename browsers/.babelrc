@@ -25,12 +25,12 @@
       "namespaces",
       {
         "namespaces": {
-          "c": "../../browsers/common/components",
-          "utils": "../../browsers/common/utils",
-          "constants": '../../browsers/common/constants',
-          "libs": "../../browsers/libs",
-          "website-admin": "../../browsers/website-admin/js",
-          "website-account": "../../browsers/website-account/js"
+          "c": "./common/components",
+          "utils": "./common/utils",
+          "constants": './common/constants',
+          "libs": "./libs",
+          "website-admin": "./website-admin/js",
+          "website-account": "./website-account/js"
         }
       }
     ],

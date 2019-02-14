@@ -11,10 +11,10 @@ const autoprefixer = require('autoprefixer');
 const ansiColors = require('ansi-colors');
 
 const webpack = require('webpack');
-const webpackDevConfig = require('../webpack/webpack.dev');
-const webpackProdConfig = require('../webpack/webpack.prod');
+const webpackDevConfig = require('./webpack.dev');
+const webpackProdConfig = require('./webpack.prod');
 
-const distPath = path.resolve('../../browsers/dist');
+const distPath = path.resolve('./dist');
 
 const webpackTask = function(config, done) {
   return webpack(config, function(error, stats) {
@@ -30,7 +30,7 @@ const webpackTask = function(config, done) {
       chunkModules: false
     }) + '\n');
 
-    console.log('Webpack Finished\n');
+    console.log('Webpack Successful\n');
 
     if (done) {
       done();
@@ -39,7 +39,7 @@ const webpackTask = function(config, done) {
 }
 
 gulp.task('eslint', function () {
-  return gulp.src(['../../browsers/(website-admin|website-account)/js/*.js'])
+  return gulp.src(['./(website-admin|website-account)/js/*.js'])
     .pipe(debug({ title: ansiColors.green('eslint:'), showFiles: false }))
     .pipe(eslint())
     .pipe(eslint.format())
@@ -48,22 +48,22 @@ gulp.task('eslint', function () {
 
 // @() 的意思是从这一层级开始进行操作
 gulp.task('copyTemplates', function() {
-  return gulp.src('../../browsers/@(website-admin|website-account)/templates/pug/*')
+  return gulp.src('./@(website-admin|website-account)/templates/pug/*')
     .pipe(gulp.dest(distPath));
 });
 
 gulp.task('copyImages', function() {
-  return gulp.src('../../browsers/@(images)/**')
+  return gulp.src('./@(images)/**')
     .pipe(gulp.dest(distPath));
 });
 
 gulp.task('copyFonts', function() {
-  return gulp.src('../../browsers/@(fonts)/**')
+  return gulp.src('./@(fonts)/**')
     .pipe(gulp.dest(distPath));
 });
 
 gulp.task('copyLibs', function() {
-  return gulp.src('../../browsers/@(libs)/**')
+  return gulp.src('./@(libs)/**')
     .pipe(gulp.dest(distPath));
 });
 
@@ -80,28 +80,28 @@ gulp.task('webpack-dev', function() {
   webpackTask(webpackDevConfig);
 });
 
-gulp.task('minify-css', function() {
-  return gulp.src(`${distPath}/css/**/*.css`)
-    .pipe(cleanCSS())
-    .pipe(gulp.dest(`${distPath}/css`));
-});
-
 gulp.task('scss', function () {
-  return gulp.src('../../browsers/scss/**/*.scss')
+  return gulp.src('./scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .on('error', notify.onError(function (error) {
       return error.message;
     }))
     .pipe(postcss([autoprefixer()]))
     .pipe(gulp.dest(`${distPath}/css`))
-    .pipe(notify('Scss Build Successfull'));
+    .pipe(notify('Scss Build Successful'));
+});
+
+gulp.task('minify-css', function() {
+  return gulp.src(`${distPath}/css/**/*.css`)
+    .pipe(cleanCSS())
+    .pipe(gulp.dest(`${distPath}/css`));
 });
 
 gulp.task('watch', function() {
-  gulp.watch('../../browsers/scss/*.scss', ['scss']);
-  gulp.watch('../../browsers/images/**', ['copyImages']);
-  gulp.watch('../../browsers/fonts/**', ['copyFonts']);
-  gulp.watch('../../browsers/libs/**', ['copyLibs']);
+  gulp.watch('./scss/*.scss', ['scss']);
+  gulp.watch('./images/**', ['copyImages']);
+  gulp.watch('./fonts/**', ['copyFonts']);
+  gulp.watch('./libs/**', ['copyLibs']);
 });
 
 gulp.task(

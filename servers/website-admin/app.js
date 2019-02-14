@@ -1,13 +1,13 @@
 // Module import
 const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
-const session = require('express-session');
 const express = require('express');
 const expressWinston = require('express-winston');
 const fs = require('fs');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
+const session = require('express-session');
 const winston = require('winston');
 const Redis = require('ioredis');
 
@@ -22,7 +22,7 @@ const _componentsRouter = require('./routes/components');
 const app = express();
 
 // Set view engine setup
-app.set('views', path.join(__dirname, '../../browsers/dist/website-admin/templates/pug'));
+app.set('views', path.join(__dirname, '../browsers/dist/website-admin/templates/pug'));
 app.set('view engine', 'pug');
 
 const accessStream = fs.createWriteStream(
