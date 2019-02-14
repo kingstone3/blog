@@ -1,12 +1,12 @@
-var redis = require('redis');
+var Redis = require('ioredis');
 
 var COMMON_CONFIG = require('../common/config');
 
 
-var cache = redis.createClient({
+var cache = new Redis({
   host: 'redis',
   port: COMMON_CONFIG.REDIS_PORT,
-  db: 1
+  db: 0
 });
 
 cache.on('error', function (err) {

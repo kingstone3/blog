@@ -1,5 +1,4 @@
 // Module import
-var connectRedis = require('connect-redis');
 var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var express = require('express');
@@ -7,6 +6,7 @@ var helmet = require('helmet');
 var logger = require('morgan');
 var path = require('path');
 var session = require('express-session');
+var Redis = require('ioredis');
 
 var COMMON_CONFIG = require('../common/config');
 
@@ -23,14 +23,14 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 
 // Set Redis session
-var RedisStore = connectRedis(session);
+var redisStore = new Redis({
+  host: 'redis',
+  port: COMMON_CONFIG.REDIS_PORT,
+  db: 0
+});
 
 app.use(session({
-  store: new RedisStore({
-    host: 'redis',
-    port: COMMON_CONFIG.REDIS_PORT,
-    db: 0
-  }),
+  store: redisStore,
   secret: COMMON_CONFIG.SESSION_SECRET.account,
   resave: true,
   saveUninitialized: false,
