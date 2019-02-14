@@ -11,7 +11,7 @@ const session = require('express-session');
 const winston = require('winston');
 const Redis = require('ioredis');
 
-const COMMON_CONFIG = require('../common/config');
+const COMMON_CONFIG = require('<common>/config');
 
 // Router import
 const indexRouter = require('./routes/index');

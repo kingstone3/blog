@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var home = require('../home');
+var home = require('<admin>/home');
 
 
 // Home Page

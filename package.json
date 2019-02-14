@@ -8,10 +8,10 @@
     "url": "git@github.com:kingstone3/website.git"
   },
   "scripts": {
-    "start-website-admin": "pm2 restart servers/website-admin/bin/www --name 'website-admin'",
-    "start-website-account": "pm2 restart servers/website-account/bin/www --name 'website-account'",
-    "start-website-admin-dev": "nodemon servers/website-admin/bin/www --config config/nodemon/website-admin.json",
-    "start-website-account-dev": "nodemon servers/website-account/bin/www --config config/nodemon/website-account.json",
+    "start-website-admin": "pm2 restart 'babel-node servers/website-admin/bin/www' --name 'website-admin'",
+    "start-website-account": "pm2 restart 'babel-node servers/website-account/bin/www' --name 'website-account'",
+    "start-website-admin-dev": "nodemon --exec babel-node servers/website-admin/bin/www --config config/nodemon/website-admin.json",
+    "start-website-account-dev": "nodemon --exec babel-node servers/website-account/bin/www --config config/nodemon/website-account.json",
     "gulp": "cd config/gulp && gulp",
     "gulp-build": "cd config/gulp && gulp build",
     "deploy-build": "sh browsers/bin/deploy.sh"
@@ -22,6 +22,8 @@
     "ansi-colors": "^3.2.3",
     "autoprefixer": "^9.0.1",
     "axios": "^0.18.0",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-namespaces": "^0.2.4",

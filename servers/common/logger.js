@@ -1,7 +1,7 @@
 const expressWinston = require('express-winston');
 const winston = require('winston');
 
-const COMMON_CONFIG = require('../common/config');
+const COMMON_CONFIG = require('<common>/config');
 
 
 function createLogger(server) {

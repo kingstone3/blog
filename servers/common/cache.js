@@ -1,6 +1,6 @@
 const Redis = require('ioredis');
 
-const COMMON_CONFIG = require('../common/config');
+const COMMON_CONFIG = require('<common>/config');
 
 
 const cache = new Redis({

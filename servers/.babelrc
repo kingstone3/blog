@@ -1,0 +1,26 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        targets: {
+          "node": "10.15.1"
+        }
+      }
+    ]
+  ],
+  "ignore": ["node_modules"],
+  "plugins": [
+    [
+      "namespaces",
+      {
+        "namespaces": {
+          "common": "servers/common",
+          "account": "servers/website-account",
+          "admin": "servers/website-admin"
+        }
+      }
+    ],
+    "transform-decorators-legacy",
+  ]
+}
