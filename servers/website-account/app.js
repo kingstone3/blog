@@ -1,29 +1,44 @@
 // Module import
-var cookieParser = require('cookie-parser');
-var createError = require('http-errors');
-var express = require('express');
-var helmet = require('helmet');
-var logger = require('morgan');
-var path = require('path');
-var session = require('express-session');
-var Redis = require('ioredis');
+const cookieParser = require('cookie-parser');
+const createError = require('http-errors');
+const express = require('express');
+const expressWinston = require('express-winston');
+const fs = require('fs');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const path = require('path');
+const session = require('express-session');
+const winston = require('winston');
+const Redis = require('ioredis');
 
-var COMMON_CONFIG = require('../common/config');
+const COMMON_CONFIG = require('../common/config');
 
 // Router import
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 
 // Set Express app
-var app = express();
+const app = express();
 
 // Set view engine setup
 app.set('views', path.join(__dirname, '../../browsers/dist/website-account/templates/pug'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
+const accessStream = fs.createWriteStream(
+  `${COMMON_CONFIG.LOG_PATH}/website-account-access.log`,
+  {
+    flags: 'a'
+  }
+);
+
+app.use(morgan(
+  'combined',
+  {
+    stream: accessStream
+  }
+));
 
 // Set Redis session
-var redisStore = new Redis({
+const redisStore = new Redis({
   host: 'redis',
   port: COMMON_CONFIG.REDIS_PORT,
   db: 0
@@ -47,15 +62,31 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 
+app.use(expressWinston.logger({
+  transports: [
+    new winston.transports.File({
+      filename: `${COMMON_CONFIG.LOG_PATH}/website-account-success.log`
+    })
+  ]
+}));
+
 app.use('/', indexRouter);
 
+app.use(expressWinston.errorLogger({
+  transports: [
+    new winston.transports.File({
+      filename: `${COMMON_CONFIG.LOG_PATH}/website-account-error.log`
+    })
+  ]
+}));
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

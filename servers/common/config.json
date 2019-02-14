@@ -3,5 +3,6 @@
   "SESSION_SECRET": {
     "account": "7QTwRNbHuLfgNdsexorhFYsh",
     "admin": "XFeoRviVNVBBfeye9kRWsXpn"
-  }
+  },
+  "LOG_PATH": "/website/log"
 }
