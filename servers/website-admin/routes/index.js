@@ -3,6 +3,7 @@ var router = express.Router();
 
 var homeRoutes = require('./home');
 
+
 // Home Routes
 router.get(/.?\//, homeRoutes);
 
