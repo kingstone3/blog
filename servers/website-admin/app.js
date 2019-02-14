@@ -12,7 +12,7 @@ var COMMON_CONFIG = require('../common/config');
 
 // Router import
 var indexRouter = require('./routes/index');
-var _componentsRouter = require('./routes/componentsRouter');
+var _componentsRouter = require('./routes/components');
 
 // Set Express app
 var app = express();
@@ -46,10 +46,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// TODO:
+// Component route, 网站上线后删除
+app.use('/_components', _componentsRouter);
+
 // url path 部分最后都会自动补全 '/'，并用 '/' 来分割 path
 // 例如 url:blog.localhost => 原始 path 部分: 空 => 补全后 path: / => 分割 path: [/]
 //     url:blog.localhost/_components => 原始 path 部分: /components => 补全后 path: /_components/ => 分割 path: [/_component][/]
-app.use('/_components', _componentsRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
