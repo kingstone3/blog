@@ -4,7 +4,7 @@ const COMMON_CONFIG = require('<common>/config');
 
 
 const cache = new Redis({
-  host: 'redis',
+  host: COMMON_CONFIG.REDIS_HOST,
   port: COMMON_CONFIG.REDIS_PORT,
   db: 0
 });

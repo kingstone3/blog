@@ -41,11 +41,11 @@ app.use(morgan(
 
 // Set Redis session
 const redisStore = new Redis({
-  host: 'redis',
+  host: COMMON_CONFIG.REDIS_HOST,
   port: COMMON_CONFIG.REDIS_PORT,
   db: 0
 });
-
+console.log(redisStore)
 app.use(session({
   store: redisStore,
   secret: COMMON_CONFIG.SESSION_SECRET.admin,
