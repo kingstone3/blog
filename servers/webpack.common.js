@@ -14,6 +14,7 @@ module.exports = {
 
   target: 'node',
 
+  // Because of express in webpack bug
   externals: {
     express: 'commonjs express'
   },

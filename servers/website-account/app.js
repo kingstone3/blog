@@ -1,20 +1,20 @@
 // Module import
-const cookieParser = require('cookie-parser');
-const createError = require('http-errors');
-const express = require('express');
-const expressWinston = require('express-winston');
-const fs = require('fs');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const path = require('path');
-const session = require('express-session');
-const winston = require('winston');
-const Redis = require('ioredis');
+import cookieParser from 'cookie-parser';
+import createError from 'http-errors';
+import express from 'express';
+import expressWinston from 'express-winston';
+import fs from 'fs';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import path from 'path';
+import session from 'express-session';
+import winston from 'winston';
+import Redis from 'ioredis';
 
-const COMMON_CONFIG = require('<common>/config');
+import COMMON_CONFIG from '<common>/config';
 
 // Router import
-const indexRouter = require('./routes/index');
+import indexRouter from './routes/index';
 
 
 // Set Express app

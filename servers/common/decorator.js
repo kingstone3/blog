@@ -1,9 +1,5 @@
-function tokenRequired() {
+export function tokenRequired() {
   return () => {
 
   }
-}
-
-module.exports = {
-  tokenRequired
 }

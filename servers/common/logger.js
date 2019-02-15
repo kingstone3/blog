@@ -1,7 +1,7 @@
-const expressWinston = require('express-winston');
-const winston = require('winston');
+import expressWinston from 'express-winston';
+import winston from 'winston';
 
-const COMMON_CONFIG = require('<common>/config');
+import COMMON_CONFIG from '<common>/config';
 
 
 function createLogger(server) {
@@ -18,7 +18,7 @@ function createLogger(server) {
 const accountLogger = createLogger('website-account');
 const adminLogger = createLogger('website-admin');
 
-module.exports = {
-  account: accountLogger.info,
-  admin: accountLogger.info
+export default {
+  accountLogger: accountLogger.info,
+  adminLogger: accountLogger.info
 }

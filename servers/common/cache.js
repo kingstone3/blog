@@ -1,6 +1,6 @@
-const Redis = require('ioredis');
+import Redis from 'ioredis';
 
-const COMMON_CONFIG = require('<common>/config');
+import COMMON_CONFIG from '<common>/config';
 
 
 const cache = new Redis({
@@ -13,4 +13,4 @@ cache.on('error', (err) => {
   console.log(`Cache error: ${err}`);
 });
 
-module.exports = cache;
+export default cache;

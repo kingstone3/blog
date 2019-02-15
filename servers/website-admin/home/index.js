@@ -1,6 +1,6 @@
-const cache = require('<common>/cache');
-const logger = require('<common>/logger').admin;
-const { tokenRequired } = require('<common>/decorator');
+import cache from '<common>/cache';
+import { adminLogger } from '<common>/logger';
+import { tokenRequired } from '<common>/decorator';
 
 
 class Home {
@@ -12,4 +12,6 @@ class Home {
   }
 }
 
-module.exports = new Home();
+const home = new Home;
+
+export default home;
