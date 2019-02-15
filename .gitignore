@@ -3,5 +3,5 @@ dist
 node_modules
 *.log
 
-config.json
+servers/common/config.json
 package-lock.json
