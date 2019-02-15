@@ -1,9 +1,0 @@
-{
-  "COMMON_CONFIG.REDIS_HOST": "redis",
-  "REDIS_PORT": 6379,
-  "SESSION_SECRET": {
-    "account": "7QTwRNbHuLfgNdsexorhFYsh",
-    "admin": "XFeoRviVNVBBfeye9kRWsXpn"
-  },
-  "LOG_PATH": "/website/log"
-}
