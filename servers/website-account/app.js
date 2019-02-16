@@ -1,4 +1,5 @@
 // Module import
+import connectRedis from 'connect-redis';
 import cookieParser from 'cookie-parser';
 import createError from 'http-errors';
 import express from 'express';
@@ -41,6 +42,8 @@ app.use(morgan(
   }
 ));
 
+const RedisStore = connectRedis(session);
+
 // Set Redis session
 const redisStore = new Redis({
   host: COMMON_CONFIG.REDIS_HOST,
@@ -49,12 +52,13 @@ const redisStore = new Redis({
 });
 
 app.use(session({
-  store: redisStore,
+  store: new RedisStore({
+    client: redisStore
+  }),
   secret: COMMON_CONFIG.SESSION_SECRET.account,
   resave: true,
   saveUninitialized: false,
   cookie: {
-    secure: true,
     sameSite: true
   }
 }));

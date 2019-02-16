@@ -16,7 +16,9 @@ module.exports = {
 
   // Because of express in webpack bug
   externals: {
-    express: 'commonjs express'
+    express: 'commonjs express',
+    'socket.io': 'commonjs socket.io',
+    'connect-redis': 'commonjs2 connect-redis'
   },
 
   node: {

@@ -4,7 +4,6 @@ import { tokenRequired } from '<common>/decorator';
 
 
 class Home {
-  @tokenRequired
   index(req, res, next) {
     const { uid } = req.cookies;
 
