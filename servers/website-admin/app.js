@@ -38,6 +38,7 @@ const accessStream = fs.createWriteStream(
 app.use(morgan(
   'combined',
   {
+    secure: true,
     stream: accessStream
   }
 ));
