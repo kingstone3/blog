@@ -13,7 +13,7 @@
     methods: {
       handleBaseButtonClick() {
         return apiRequest({
-          body: '123'
+          method: 'post',
         })
       }
     }

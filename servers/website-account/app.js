@@ -12,11 +12,13 @@ import session from 'express-session';
 import winston from 'winston';
 import Redis from 'ioredis';
 
-import COMMON_CONFIG from '<common>/config';
+import CONFIG from '<common>/config';
 
 // Router import
 import indexRouter from './routes/index';
 
+
+const ACCOUNT_CONFIG = CONFIG.ACCOUNT;
 
 // Set Express app
 const app = express();
@@ -29,7 +31,7 @@ app.set('views', path.join(
 app.set('view engine', 'pug');
 
 const accessStream = fs.createWriteStream(
-  `${COMMON_CONFIG.LOG_PATH}/website-account-access.log`,
+  `${CONFIG.LOG_PATH}/website-account-access.log`,
   {
     flags: 'a'
   }
@@ -38,7 +40,6 @@ const accessStream = fs.createWriteStream(
 app.use(morgan(
   'combined',
   {
-    secure: true,
     stream: accessStream
   }
 ));
@@ -47,8 +48,8 @@ const RedisStore = connectRedis(session);
 
 // Set Redis session
 const redisStore = new Redis({
-  host: COMMON_CONFIG.REDIS_HOST,
-  port: COMMON_CONFIG.REDIS_PORT,
+  host: CONFIG.REDIS_HOST,
+  port: CONFIG.REDIS_PORT,
   db: 0
 });
 
@@ -56,10 +57,11 @@ app.use(session({
   store: new RedisStore({
     client: redisStore
   }),
-  secret: COMMON_CONFIG.SESSION_SECRET.account,
+  secret: ACCOUNT_CONFIG.SESSION_SECRET,
   resave: true,
   saveUninitialized: false,
   cookie: {
+    secure: true,
     sameSite: true
   }
 }));
@@ -74,7 +76,7 @@ app.use(cookieParser());
 app.use(expressWinston.logger({
   transports: [
     new winston.transports.File({
-      filename: `${COMMON_CONFIG.LOG_PATH}/website-account-success.log`
+      filename: `${CONFIG.LOG_PATH}/website-account-success.log`
     })
   ]
 }));
@@ -84,7 +86,7 @@ app.use('/', indexRouter);
 app.use(expressWinston.errorLogger({
   transports: [
     new winston.transports.File({
-      filename: `${COMMON_CONFIG.LOG_PATH}/website-account-error.log`
+      filename: `${CONFIG.LOG_PATH}/website-account-error.log`
     })
   ]
 }));
