@@ -7,10 +7,20 @@ import Request from '<admin>/utils/request';
 class API {
   @tokenRequired
   index(req, res, next) {
-    const { 'x-forwarded-for': xForwardedFor } = req.headers;
-    const [ip] = xForwardedFor.split(',')
+    const {
+      cookies, headers,
+      body: requestParams,
+    } = req;
 
-    const request = new Request(req.body, ip);
+    const {'x-forwarded-for': xForwardedFor} = headers;
+
+    // Get user ip
+    requestParams.ip = xForwardedFor.split(',');
+
+    // Get user id
+    requestParams.uid = cookie.uid;
+
+    const request = new Request(requestParams);
   }
 }
 

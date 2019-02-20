@@ -5,18 +5,19 @@ import COMMON_CONFIG from '<common>/config';
 let instance = axios.create()
 
 export default class BaseRequest {
-  constructor(requestParams, ip) {
+  constructor(requestParams) {
     this.requestParams = requestParams;
 
     this.baseURL = COMMON_CONFIG.API_BASEURL;
     this.timeout = COMMON_CONFIG.API_TIMEOUT;
 
-    this.ip = ip;
+    this.ip = requestParams.ip;
+    this.path = requestParams.path.toLowerCase();
+    this.method = requestParams.method.toLowerCase();
+    this.query = this.parseQuery();
 
-    this.method = this.parseMethod();
-    this.path = this.parsePath();
-    this.nameSpace = this.parseNameSpace();
     this.userAgent = this.parseUserAgent();
+    this.nameSpace = this.parseNameSpace();
     this.authorization = this.parseAuthorization();
   }
 }

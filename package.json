@@ -58,7 +58,7 @@
     "ioredis": "^4.6.2",
     "lodash": "^4.17.11",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.5",
+    "nodemon": "^1.18.10",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "query-string": "^6.2.0",
