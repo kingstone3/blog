@@ -33,8 +33,7 @@ export default function request(APIEndpoint, body, options = {}) {
 
       if (
         !options.ignore401 &&
-        error.response &&
-        error.response.status === 401
+        error?.response.status === 401
       ) {
         window.dispatchEvent(new CustomEvent('REQUEST_ERROR_401'));
       }
@@ -45,9 +44,9 @@ export default function request(APIEndpoint, body, options = {}) {
 
       // ... 的优先级低于 &&
       resolve({
-        ...error.response && error.response.data,
-        status: error.response && error.response.status,
-        code: _.result(error, 'response.data.code') || 'NETWORK_ERROR',
+        ...error?.response.data,
+        status: error?.response.status,
+        code: error?.response?.data.code ?? 'NETWORK_ERROR',
       });
     });
   });

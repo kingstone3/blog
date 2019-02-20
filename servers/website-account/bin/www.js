@@ -1,4 +1,4 @@
-var app = require('../app');
+import app from '../app';
 var debug = require('debug')('server:server');
 var http = require('http');
 var socket = require('socket.io');

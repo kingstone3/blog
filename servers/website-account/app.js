@@ -51,12 +51,13 @@ const redisStore = new Redis({
   host: CONFIG.REDIS_HOST,
   port: CONFIG.REDIS_PORT,
   db: 0
-});
+})
+|> new (connectRedis(session))({
+  client: #
+})
 
 app.use(session({
-  store: new RedisStore({
-    client: redisStore
-  }),
+  store: redisStore,
   secret: ACCOUNT_CONFIG.SESSION_SECRET,
   resave: true,
   saveUninitialized: false,
@@ -107,4 +108,4 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-module.exports = app;
+export default app;

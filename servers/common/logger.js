@@ -15,5 +15,5 @@ function createLogger(server) {
   })
 }
 
-export const accountLogger = createLogger('website-account');
-export const adminLogger = createLogger('website-admin');
+export const accountLogger = 'website-account' |> createLogger;
+export const adminLogger = 'website-admin' |> createLogger;
