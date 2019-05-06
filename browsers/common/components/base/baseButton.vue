@@ -1,11 +1,10 @@
 <!--
   实例化 baseButton 的时候，
-  v-on 和其他属性有区别，
-  v-on 不会被传到 $attrs 属性中，
-  而是会传到 $listeners 里，
+  v-on 会传入 $listeners 里，
   同时这个属性不会被传递到组件根节点下，
-  需要在组件内主动 $emit 一下事件，
-  如果带有 .native modifier 的话就会被传递到根节点下。
+  如果带有 .native modifier 的话就会被传递到根节点下，并随着原生事件被触发。
+  v-on 绑定的是 vue 事件，需要子组件内 $emit 来触发，
+  .native 绑定的是原生 dom 事件，会随着原生事件被触发。
 -->
 <template lang='pug'>
   button(
