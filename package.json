@@ -8,8 +8,8 @@
     "url": "git@github.com:kingstone3/website.git"
   },
   "scripts": {
-    "start-website-account": "cd servers/dist && pm2 restart website_account.js --name 'website-account'",
-    "start-website-admin": "cd servers/dist && pm2 restart website_admin.js --name 'website-admin'",
+    "start-website-account": "cd servers/dist && pm2 start website_account.js --name 'website-account'",
+    "start-website-admin": "cd servers/dist && pm2 start website_admin.js --name 'website-admin'",
     "start-website-account-dev": "cd servers/dist && nodemon website_account --watch website_account.js",
     "start-website-admin-dev": "cd servers/dist && nodemon website_admin --watch website_admin.js",
     "gulp-browsers": "rm -rf browsers/dist && cd browsers && gulp",
