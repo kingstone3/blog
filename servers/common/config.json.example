@@ -1,0 +1,19 @@
+{
+  "REDIS_HOST": "redis",
+  "REDIS_PORT": "6379",
+  "LOG_PATH": "/website/log",
+  "API_BASEURL": "api.website.com",
+  "API_TIMEOUT": "1000",
+
+  "ACCOUNT": {
+    "SESSION_SECRET": "",
+    "API_NAMESPACE": "",
+    "USER_AGENT": "Website Account"
+  },
+
+  "ADMIN": {
+    "SESSION_SECRET": "",
+    "API_NAMESPACE": "",
+    "USER_AGENT": "Website Admin"
+  }
+}
