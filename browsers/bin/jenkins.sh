@@ -2,6 +2,8 @@
 
 npm install
 
+cp ${config} servers/common/config.json
+
 npm run gulp-build-browsers
 npm run gulp-build-servers
 
