@@ -23,7 +23,7 @@ app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(path.join(
     __dirname,
-    '../../../browsers/dist/website-admin/templates/pug'
+    '../../browsers/dist/website-admin/templates/pug'
   ), {
     extension: 'pug'
   }
