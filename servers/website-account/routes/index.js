@@ -1,11 +1,19 @@
-import express from 'express';
+const router = require('koa-router')()
 
+router.get('/', async (ctx, next) => {
+  await ctx.render('index', {
+    title: 'Hello Koa 2!'
+  })
+})
 
-const router = express.Router();
+router.get('/string', async (ctx, next) => {
+  ctx.body = 'koa2 string'
+})
 
-// Home page
-router.get(/.*/, (req, res, next) => {
-  res.render('index', { title: 'Website Account' });
-});
+router.get('/json', async (ctx, next) => {
+  ctx.body = {
+    title: 'koa2 json'
+  }
+})
 
-export default router;
+module.exports = router

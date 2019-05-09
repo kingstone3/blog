@@ -1,118 +1,49 @@
-// Module import
-import connectRedis from 'connect-redis';
-import cookieParser from 'cookie-parser';
-import createError from 'http-errors';
-import express from 'express';
-import expressWinston from 'express-winston';
-import fs from 'fs';
-import helmet from 'helmet';
-import morgan from 'morgan';
-import path from 'path';
-import session from 'express-session';
-import winston from 'winston';
-import Redis from 'ioredis';
+const Koa = require('koa')
+const app = new Koa()
+const views = require('koa-views')
+const json = require('koa-json')
+const onerror = require('koa-onerror')
+const path = require('path');
+const bodyparser = require('koa-bodyparser')
+const logger = require('koa-logger')
 
-import CONFIG from '<common>/config';
-
-// Router import
-import indexRouter from './routes/index';
-import _componentsRouter from './routes/components';
-
-
-const ADMIN_CONFIG = CONFIG.ADMIN;
-
-// Set Express app
-const app = express();
-
-// Set view engine setup
-app.set('views', path.join(
-  __dirname,
-  '../../../browsers/dist/website-admin/templates/pug'
-));
-app.set('view engine', 'pug');
-
-const accessStream = fs.createWriteStream(
-  `${CONFIG.LOG_PATH}/website-admin-access.log`,
-  {
-    flags: 'a'
-  }
-);
-
-app.use(morgan(
-  'combined',
-  {
-    stream: accessStream
-  }
-));
-
-const RedisStore = connectRedis(session);
-
-// Set Redis session
-const redisStore = new Redis({
-  host: CONFIG.REDIS_HOST,
-  port: CONFIG.REDIS_PORT,
-  db: 0
-})
-|> new (connectRedis(session))({
-  client: #
-})
-
-app.use(session({
-  store: redisStore,
-  secret: ADMIN_CONFIG.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: false,
-  cookie: {
-    secure: true,
-    sameSite: true
-  }
-}));
-
-app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-// TODO:
-// Component route, 网站上线后删除
-app.use('/_components', _componentsRouter);
-
-app.use(expressWinston.logger({
-  transports: [
-    new winston.transports.File({
-      filename: `${CONFIG.LOG_PATH}/website-admin-success.log`
-    })
-  ]
-}));
-
-// url path 部分最后都会自动补全 '/'，并用 '/' 来分割 path
-// 例如 url:blog.localhost => 原始 path 部分: 空 => 补全后 path: / => 分割 path: [/]
-//     url:blog.localhost/_components => 原始 path 部分: /components => 补全后 path: /_components/ => 分割 path: [/_component][/]
-app.use('/', indexRouter);
-
-app.use(expressWinston.errorLogger({
-  transports: [
-    new winston.transports.File({
-      filename: `${CONFIG.LOG_PATH}/website-admin-error.log`
-    })
-  ]
-}));
-
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404));
-});
+const index = require('./routes/index')
+const users = require('./routes/users')
 
 // error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+onerror(app)
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// middlewares
+app.use(bodyparser({
+  enableTypes:['json', 'form', 'text']
+}))
+app.use(json())
+app.use(logger())
+app.use(require('koa-static')(__dirname + '/public'))
+
+app.use(views(path.join(
+    __dirname,
+    '../../../browsers/dist/website-admin/templates/pug'
+  ), {
+    extension: 'pug'
+  }
+))
+
+// logger
+app.use(async (ctx, next) => {
+  const start = new Date()
+  await next()
+  const ms = new Date() - start
+  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+})
+
+// routes
+app.use(index.routes(), index.allowedMethods())
+app.use(users.routes(), users.allowedMethods())
+
+// error-handling
+app.on('error', (err, ctx) => {
+  console.error('server error', err, ctx)
 });
 
-// Adapt www.js use commonjs require modules
-export default app
+module.exports = app

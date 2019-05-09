@@ -108,8 +108,8 @@ gulp.task(
   'build',
   gulp.parallel(
     'copyStaticFiles',
-    gulp.series('scss', 'minify-css'),
-    gulp.series('webpack-prod')
+    'webpack-prod',
+    gulp.series('scss', 'minify-css')
   )
 );
 
@@ -118,8 +118,8 @@ gulp.task(
   gulp.series(
     gulp.parallel(
       'copyStaticFiles',
-      gulp.series('scss'),
-      gulp.series('webpack-dev')
+      'webpack-dev',
+      'scss'
     ),
     'watch'
   )
