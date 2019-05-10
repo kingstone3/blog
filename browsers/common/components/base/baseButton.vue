@@ -12,7 +12,7 @@
     :class='classObj'
     @click='handleClick'
   )
-    slot
+    slot Click
 </template>
 
 <!--

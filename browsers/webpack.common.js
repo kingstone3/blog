@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WebpackDevServerOutput = require('webpack-dev-server-output');
 const { VueLoaderPlugin } = require('vue-loader');
 
 
@@ -32,6 +34,8 @@ module.exports = {
         test: /\.vue$/,
         use: ['vue-loader']
       },
+      // 普通的 `.scss` 文件和 `*.vue` 文件中的
+      // `<style lang="scss">` 块都应用它
       {
         test: /\.scss$/,
         use: [
@@ -75,6 +79,8 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
+
     new VueLoaderPlugin(),
 
     new HtmlWebpackPlugin({
@@ -94,6 +100,12 @@ module.exports = {
       template: './website-account/templates/index.template',
       filename: `${__dirname}/./dist/website-account/templates/pug/index.pug`,
       inject: false,
+    }),
+
+    new webpack.HotModuleReplacementPlugin(),
+
+    new WebpackDevServerOutput({
+      path: './dist/js',
     }),
 
     new WebpackNotifierPlugin({

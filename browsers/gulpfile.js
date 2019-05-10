@@ -11,32 +11,12 @@ const autoprefixer = require('autoprefixer');
 const ansiColors = require('ansi-colors');
 
 const webpack = require('webpack');
+const webpackDevServer = require('webpack-dev-server');
 const webpackDevConfig = require('./webpack.dev');
 const webpackProdConfig = require('./webpack.prod');
 
 const distPath = path.resolve('./dist');
 
-const webpackTask = function(config, done) {
-  return webpack(config, function(error, stats) {
-    if (error) {
-      throw error;
-    }
-
-    process.stdout.write(stats.toString({
-      colors: true,
-      modules: false,
-      children: false,
-      chunks: false,
-      chunkModules: false
-    }) + '\n');
-
-    console.log('Webpack Successful\n');
-
-    if (done) {
-      done();
-    }
-  });
-}
 
 gulp.task('eslint', function () {
   return gulp.src(['./(website-admin|website-account)/js/*.js'])
@@ -73,11 +53,44 @@ gulp.task(
 );
 
 gulp.task('webpack-prod', function(done) {
-  webpackTask(webpackProdConfig, done);
+  webpack(webpackProdConfig, function(error, stats) {
+    if (error) {
+      throw error;
+    }
+
+    process.stdout.write(stats.toString({
+      colors: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false
+    }) + '\n');
+
+    console.log('Webpack Successful\n');
+
+    done();
+  });
 });
 
 gulp.task('webpack-dev', function() {
-  webpackTask(webpackDevConfig);
+  const options = {
+    hot: true,
+    host: '127.0.0.1',
+    port: 8000,
+    compress: true,
+    disableHostCheck: true,
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, 'dist'),
+  };
+
+  webpackDevServer.addDevServerEntrypoints(webpackDevConfig, options);
+
+  const compiler = webpack(webpackDevConfig);
+  const server = new webpackDevServer(compiler, options);
+
+  server.listen(8000, 'localhost', () => {
+    console.log('webpack dev server listening on port 8000');
+  });
 });
 
 gulp.task('scss', function () {
