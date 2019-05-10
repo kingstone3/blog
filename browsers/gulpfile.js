@@ -111,10 +111,10 @@ gulp.task('minify-css', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./scss/*.scss', ['scss']);
-  gulp.watch('./images/**', ['copyImages']);
-  gulp.watch('./fonts/**', ['copyFonts']);
-  gulp.watch('./libs/**', ['copyLibs']);
+  gulp.watch('./scss/**/*.scss', gulp.series('scss'));
+  gulp.watch('./images/**', gulp.series('copyImages'));
+  gulp.watch('./fonts/**', gulp.series('copyFonts'));
+  gulp.watch('./libs/**', gulp.series('copyLibs'));
 });
 
 gulp.task(
@@ -131,9 +131,11 @@ gulp.task(
   gulp.series(
     gulp.parallel(
       'copyStaticFiles',
-      'webpack-dev',
       'scss'
     ),
-    'watch'
+    gulp.parallel(
+      'webpack-dev',
+      'watch',
+    )
   )
 );
