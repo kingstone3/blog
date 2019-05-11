@@ -83,7 +83,7 @@ gulp.task('webpack-dev', function() {
     contentBase: path.resolve(__dirname, 'dist'),
   };
 
-  webpackDevServer.addDevServerEntrypoints(webpackDevConfig, options);
+  // webpackDevServer.addDevServerEntrypoints(webpackDevConfig, options);
 
   const compiler = webpack(webpackDevConfig);
   const server = new webpackDevServer(compiler, options);

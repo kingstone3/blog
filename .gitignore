@@ -4,4 +4,6 @@ node_modules
 *.log
 
 servers/common/config.json
+servers/website-account/common
+servers/website-admin/common
 package-lock.json
