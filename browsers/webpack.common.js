@@ -9,18 +9,18 @@ const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   entry: {
-    website_account: './website-account/js',
-    website_admin: './website-admin/js',
+    website_account: ['./website-account/js/'],
+    website_admin: ['./website-admin/js/'],
 
     // 网站上线后删除这个 bundle
-    components: './common/components',
+    components: ['./common/components/'],
   },
 
   output: {
-    path: path.resolve(__dirname, './dist/js'),
+    path: path.resolve(__dirname, './dist/js/'),
     filename: 'chunk_[name].js',
     chunkFilename: 'chunk_[name].js',
-    publicPath: '/dist/js'
+    publicPath: '/dist/js/',
   },
 
   module: {
@@ -106,6 +106,7 @@ module.exports = {
 
     new WebpackDevServerOutput({
       path: './dist/js',
+      isDel: true
     }),
 
     new WebpackNotifierPlugin({
