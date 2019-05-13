@@ -36,8 +36,8 @@
           "utils": "./common/utils",
           "constants": './common/constants',
           "libs": "./libs",
-          "website-admin": "./website-admin/js",
-          "website-account": "./website-account/js"
+          "website-admin": "./website-admin",
+          "website-account": "./website-account"
         }
       }
     ],

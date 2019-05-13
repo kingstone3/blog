@@ -9,11 +9,8 @@ const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   entry: {
-    website_account: ['./website-account/js/'],
-    website_admin: ['./website-admin/js/'],
-
-    // 网站上线后删除这个 bundle
-    components: ['./common/components/'],
+    website_account: ['./website-account/pages/'],
+    website_admin: ['./website-admin/pages/'],
   },
 
   output: {
@@ -94,13 +91,6 @@ module.exports = {
       inject: false,
     }),
 
-    new HtmlWebpackPlugin({
-      template: './website-admin/templates/components.template',
-      filename: `${__dirname}/./dist/website-admin/templates/pug/components.pug`,
-      inject: false,
-    }),
-
-    // 网站上线后删除这个操作
     new HtmlWebpackPlugin({
       template: './website-account/templates/index.template',
       filename: `${__dirname}/./dist/website-account/templates/pug/index.pug`,

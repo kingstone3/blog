@@ -1,8 +1,11 @@
 import Vue from 'vue';
-import i18n from '<utils>/i18n';
 import io from 'socket.io-client';
 
 import '<utils>/importBaseComponents';
+
+import i18n from '<utils>/i18n';
+
+import store from '<website-admin>/store';
 
 import App from './app';
 
@@ -15,6 +18,8 @@ import App from './app';
 // })
 
 new Vue({
+  store,
+  i18n,
   el: '#app',
   render: h => h(App)
 });
