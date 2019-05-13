@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import i18n from '<utils>/i18n';
 import io from 'socket.io-client';
 
 import '<utils>/importBaseComponents';

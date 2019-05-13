@@ -12,7 +12,7 @@
     :class='classObj'
     @click='handleClick'
   )
-    slot Click
+    slot {{ $t('BASE_BUTTON_CLICK') }}
 </template>
 
 <!--
