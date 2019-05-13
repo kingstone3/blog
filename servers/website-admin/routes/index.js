@@ -1,7 +1,9 @@
-const router = require('koa-router')()
+const router = require('koa-router')();
+const { VENDORS_VERSION } = require('../../../browsers/common/config');
 
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
+    VENDORS_VERSION,
     title: 'Hello Koa 2!'
   })
 })

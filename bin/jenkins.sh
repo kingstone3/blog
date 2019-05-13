@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cp ${config} servers/common/config.json
+cp ${servers_config} servers/common/config.json
+cp ${browsers_config} browsers/common/config.json
 
 cd browsers
 npm install

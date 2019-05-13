@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackDevServerOutput = require('webpack-dev-server-output');
 const { VueLoaderPlugin } = require('vue-loader');
+const HappyPack = require('happypack');
 
 
 module.exports = {
@@ -25,12 +26,23 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        use:  ['babel-loader?cacheDirectory']
+        use:  ['happypack/loader?id=babel']
       },
+
       {
         test: /\.vue$/,
-        use: ['vue-loader']
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              loaders: {
+                js: 'happypack/loader?id=babel',
+              }
+            }
+          }
+        ]
       },
+
       // 普通的 `.scss` 文件和 `*.vue` 文件中的
       // `<style lang="scss">` 块都应用它
       {
@@ -41,6 +53,7 @@ module.exports = {
           'sass-loader'
         ]
       },
+
       {
         test: /\.pug$/,
         oneOf: [
@@ -51,10 +64,14 @@ module.exports = {
           },
           // 这条规则应用到 JavaScript 内的 pug 导入
           {
-            use: ['raw-loader', 'pug-plain-loader']
+            use: [
+              'raw-loader',
+              'pug-plain-loader'
+            ]
           }
         ]
       },
+
       {
         resourceQuery: /blockType=i18n/,
         type: 'javascript/auto',
@@ -84,6 +101,16 @@ module.exports = {
     new CleanWebpackPlugin(),
 
     new VueLoaderPlugin(),
+
+    new HappyPack({
+      id: 'babel',
+      loaders: ['babel-loader?cacheDirectory'],
+    }),
+
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./dist/dll/vendors.manifest.json'),
+    }),
 
     new HtmlWebpackPlugin({
       template: './website-admin/templates/index.template',

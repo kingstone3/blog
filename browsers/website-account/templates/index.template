@@ -7,6 +7,9 @@ block content
 
 block bottom_scripts
   script(
+    src='/dist/libs/vendors_' + VENDORS_VERSION + '.js'
+  )
+  script(
     src='<%= htmlWebpackPlugin.files.chunks.website_vendors.entry %>'
   )
   script(

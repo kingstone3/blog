@@ -21,7 +21,7 @@
   在 pug 模板中引入 css
 -->
 <style lang='scss'>
-  .disabled{
+  .disabled {
     color: red
   }
 </style>

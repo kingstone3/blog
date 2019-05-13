@@ -19,6 +19,7 @@
 | redis  | 前端缓存                     |
 | Nginx  | 需配置代理规则                   |
 | nodemon | 自动重启 node                  |
+> 安装完成后需要将 servers/common 软链接到 servers/website-account/common 和 servers/website-admin/common
 
 ### Docker
 1. ``` git clone git@github.com:kingstone3/website-docker-env.git ```

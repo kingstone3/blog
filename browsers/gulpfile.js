@@ -12,11 +12,28 @@ const ansiColors = require('ansi-colors');
 
 const webpack = require('webpack');
 const webpackDevServer = require('webpack-dev-server');
-const webpackDevConfig = require('./webpack.dev');
-const webpackProdConfig = require('./webpack.prod');
+
+const webpackTask = function(config, done) {
+  webpack(config, function(error, stats) {
+    if (error) {
+      throw error;
+    }
+
+    process.stdout.write(stats.toString({
+      colors: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false
+    }) + '\n');
+
+    console.log('Webpack Successful\n');
+
+    done();
+  });
+}
 
 const distPath = path.resolve('./dist');
-
 
 gulp.task('eslint', function () {
   return gulp.src(['./(website-admin|website-account)/js/*.js'])
@@ -52,27 +69,9 @@ gulp.task(
   gulp.parallel('copyTemplates', 'copyImages', 'copyFonts', 'copyLibs')
 );
 
-gulp.task('webpack-prod', function(done) {
-  webpack(webpackProdConfig, function(error, stats) {
-    if (error) {
-      throw error;
-    }
-
-    process.stdout.write(stats.toString({
-      colors: true,
-      modules: false,
-      children: false,
-      chunks: false,
-      chunkModules: false
-    }) + '\n');
-
-    console.log('Webpack Successful\n');
-
-    done();
-  });
-});
-
 gulp.task('webpack-dev', function() {
+  const config = require('./webpack.dev');
+
   const options = {
     hot: true,
     host: '127.0.0.1',
@@ -83,14 +82,36 @@ gulp.task('webpack-dev', function() {
     contentBase: path.resolve(__dirname, 'dist'),
   };
 
-  // webpackDevServer.addDevServerEntrypoints(webpackDevConfig, options);
+  // webpackDevServer.addDevServerEntrypoints(config, options);
 
-  const compiler = webpack(webpackDevConfig);
+  const compiler = webpack(config);
   const server = new webpackDevServer(compiler, options);
 
   server.listen(8000, 'localhost', () => {
     console.log('webpack dev server listening on port 8000');
   });
+});
+
+gulp.task('webpack-prod', function(done) {
+  const config = require('./webpack.prod');
+
+  webpackTask(config, done);
+});
+
+gulp.task('webpack-dll-dev', function(done) {
+  const config = require('./webpack.dll');
+
+  config.mode = 'development';
+
+  webpackTask(config, done);
+});
+
+gulp.task('webpack-dll-prod', function(done) {
+  const config = require('./webpack.dll');
+
+  config.mode = 'production';
+
+  webpackTask(config, done);
 });
 
 gulp.task('scss', function () {
@@ -121,7 +142,7 @@ gulp.task(
   'build',
   gulp.parallel(
     'copyStaticFiles',
-    'webpack-prod',
+    gulp.series('webpack-dll-prod', 'webpack-prod'),
     gulp.series('scss', 'minify-css')
   )
 );
