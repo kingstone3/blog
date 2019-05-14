@@ -140,10 +140,12 @@ gulp.task('watch', function() {
 
 gulp.task(
   'build',
-  gulp.parallel(
+  gulp.series(
+    gulp.parallel(
+      gulp.series('scss', 'minify-css'),
+      gulp.series('webpack-dll-prod', 'webpack-prod')
+    ),
     'copyStaticFiles',
-    gulp.series('webpack-dll-prod', 'webpack-prod'),
-    gulp.series('scss', 'minify-css')
   )
 );
 
