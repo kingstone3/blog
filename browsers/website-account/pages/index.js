@@ -5,12 +5,12 @@ import '<utils>/importBaseComponents';
 import i18n from '<utils>/i18n';
 
 import store from '<website-account>/store';
+import router from '<website-account>/routes';
 
-import App from './app';
 
 new Vue({
   store,
+  router,
   i18n,
   el: '#app',
-  render: h => h(App)
 });
