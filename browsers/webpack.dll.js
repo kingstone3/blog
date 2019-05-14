@@ -6,7 +6,15 @@ const { VENDORS_VERSION } = require('./common/config');
 
 module.exports = {
   entry: {
-    vendors: ['vue', 'vuex', 'vue-i18n', 'vue-router', 'axios', 'lodash'],
+    'common_vendors': [
+      'vue',
+      'vuex',
+      'vue-router',
+      'vue-i18n',
+      'axios',
+      'lodash',
+      'socket.io-client'
+    ],
   },
 
   output: {
@@ -17,7 +25,7 @@ module.exports = {
 
   plugins: [
     new webpack.DllPlugin({
-      path: path.join(__dirname, 'dist', 'dll', '[name].manifest.json'),
+      path: path.resolve(__dirname, 'dll', '[name].manifest.json'),
       name: '[name]_[hash]',
     }),
   ],

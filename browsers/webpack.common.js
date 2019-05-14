@@ -81,7 +81,10 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.vue', '.json']
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      vue: 'vue/dist/vue.esm.js'
+    },
   },
 
   optimization: {
@@ -109,25 +112,25 @@ module.exports = {
 
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('./dist/dll/vendors.manifest.json'),
+      manifest: require(`${__dirname}/dll/common_vendors.manifest.json`),
     }),
 
     new HtmlWebpackPlugin({
       template: './website-admin/templates/index.template',
-      filename: `${__dirname}/./dist/website-admin/templates/pug/index.pug`,
+      filename: `${__dirname}/dist/website-admin/templates/pug/index.pug`,
       inject: false,
     }),
 
     new HtmlWebpackPlugin({
       template: './website-account/templates/index.template',
-      filename: `${__dirname}/./dist/website-account/templates/pug/index.pug`,
+      filename: `${__dirname}/dist/website-account/templates/pug/index.pug`,
       inject: false,
     }),
 
     new webpack.HotModuleReplacementPlugin(),
 
     new WebpackDevServerOutput({
-      path: './dist/js',
+      path: `${__dirname}/dist/js`,
       isDel: true
     }),
 

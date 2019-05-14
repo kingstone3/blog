@@ -6,4 +6,7 @@ config.json
 
 servers/website-account/common
 servers/website-admin/common
+
+browsers/libs/common_vendors_*.js
+
 package-lock.json
