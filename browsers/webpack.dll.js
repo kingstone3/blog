@@ -1,7 +1,7 @@
 const process = require('process');
 const path = require('path');
 const webpack = require('webpack');
-const { VENDORS_VERSION } = require('./common/config');
+const { JS_VENDORS_VERSION } = require('./common/config');
 
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'libs'),
-    filename: `[name]_${VENDORS_VERSION}.js`,
+    filename: `[name]-${JS_VENDORS_VERSION}.js`,
     library: '[name]_[hash]',
   },
 
