@@ -7,6 +7,8 @@ const WebpackDevServerOutput = require('webpack-dev-server-output');
 const { VueLoaderPlugin } = require('vue-loader');
 const HappyPack = require('happypack');
 
+const { JS_VENDORS_VERSION } = require('./common/config');
+
 
 module.exports = {
   entry: {
@@ -112,7 +114,7 @@ module.exports = {
 
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require(`${__dirname}/dll/common_vendors.manifest.json`),
+      manifest: require(`${__dirname}/dll/common_vendors-${JS_VENDORS_VERSION}.manifest.json`),
     }),
 
     new HtmlWebpackPlugin({

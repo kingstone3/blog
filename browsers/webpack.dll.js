@@ -13,7 +13,8 @@ module.exports = {
       'vue-i18n',
       'axios',
       'lodash',
-      'socket.io-client'
+      'sockjs-client',
+      'stompjs/lib/stomp',
     ],
   },
 
@@ -25,7 +26,7 @@ module.exports = {
 
   plugins: [
     new webpack.DllPlugin({
-      path: path.resolve(__dirname, 'dll', '[name].manifest.json'),
+      path: path.resolve(__dirname, 'dll', `[name]-${JS_VENDORS_VERSION}.manifest.json`),
       name: '[name]_[hash]',
     }),
   ],
