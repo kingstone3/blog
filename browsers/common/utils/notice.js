@@ -1,54 +1,79 @@
 import SockJS from  'sockjs-client';
-import Stomp from 'stompjs/lib/stomp';
 
 import { compose } from '<utils>/';
 
-let headers = {};
+
+function actionBuilder(action, data) {
+  return JSON.stringify(
+    {
+      action: action.toUpperCase(),
+      data,
+    }
+  )
+}
 
 const initSocket = compose(
-  createHeaders,
-  autoCheckConnection,
+  registerCloseHandler,
+  registerMessageHandler,
+  registerOpenHandler,
   connect,
-  createHeaders,
-  createStomp
 );
 
-function createStomp(socket) {
-  // 获取 STOMP 子协议的客户端对象
-  let stomp = window.Stomp.over(socket);
+// TODO: Add sessionid config
+function connect() {
+  return new SockJS('/sockjs', [], {
 
-  return stomp;
+  });
 }
 
-function createHeaders(stomp) {
-  let headers = {};
+function registerOpenHandler(sockjs) {
+  sockjs.addEventListener('open', () => {
+    handleOpen();
 
-  return {headers, stomp};
-}
+    const timerId = setInterval(() => {
+      try {
+        sockjs.send(actionBuilder('SOCKJS_TEST'));
+      } catch (err) {
+        clearTimeout(timerId);
 
-function connect({headers, stomp}) {
-  // 向服务器发起websocket连接
-  stomp.connect(headers, (frame) => {
-    // 订阅服务端提供的某个topic
-    stomp.subscribe('/topic/chat_msg', (msg) => {
-      // msg.body存放的是服务端发送给我们的信息
-    });
-  }, (err) => {
-    // 连接发生错误时的处理函数
-    console.log(err);
+        initSocket();
+      }
+    }, 5000);
   });
 
-  return {headers, stomp};
-};
-
-function autoCheckConnection({headers, stomp}) {
-  setInterval(() => {
-    try {
-      stomp.send('SOCKJS_TEST');
-    } catch (err) {
-      connect({headers, stomp});
-    }
-  }, 5000);
+  return sockjs;
 }
 
-initSocket(new SockJS('/sockjs'));
+function registerMessageHandler(sockjs) {
+  sockjs.addEventListener('message', (e) => {
+    handleMessage(JSON.parse(e.data));
+  });
+
+  return sockjs;
+}
+
+function registerCloseHandler(sockjs) {
+  sockjs.addEventListener('close', () => {
+    handleClose();
+  });
+
+  return sockjs;
+}
+
+
+function handleOpen() {
+  window.dispatchEvent(new CustomEvent('WS_OPENED'));
+}
+
+function handleMessage({action, detail}) {
+  window.dispatchEvent(new CustomEvent(`WS_${action}`, {
+    detail,
+  }));
+}
+
+function handleClose() {
+  window.dispatchEvent(new CustomEvent('WS_CLOSED'));
+}
+
+
+initSocket();

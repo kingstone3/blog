@@ -14,7 +14,6 @@ module.exports = {
       'axios',
       'lodash',
       'sockjs-client',
-      'stompjs/lib/stomp',
     ],
   },
 

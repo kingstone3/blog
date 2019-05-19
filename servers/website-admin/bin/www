@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('demo:server');
 var http = require('http');
+var notice = require('../common/notice');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,12 @@ var port = normalizePort(process.env.PORT || '3001');
  */
 
 var server = http.createServer(app.callback());
+
+/**
+ * Establish Sockjs server.
+ */
+
+notice.install(server)
 
 /**
  * Listen on provided port, on all network interfaces.
