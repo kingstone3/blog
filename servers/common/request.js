@@ -1,10 +1,10 @@
-import axios from 'axios';
+const axios = require('axios');
 
-import COMMON_CONFIG from '<common>/config';
+const CONFIG = require('./config');
 
 let instance = axios.create()
 
-export default class BaseRequest {
+module.exports = class BaseRequest {
   constructor(requestParams) {
     this.requestParams = requestParams;
 
