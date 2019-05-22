@@ -19,7 +19,7 @@ const CONFIG = require('./common/config');
 const ACCOUNT_CONFIG = CONFIG.ACCOUNT;
 
 const accessLogStream = fs.createWriteStream(
-  CONFIG.LOG_PATH + '/website_account_access.log', {
+  CONFIG.LOG_PATH + '/website-account-access.log', {
     flags: 'a'
   }
 );

@@ -19,7 +19,7 @@ const CONFIG = require('./common/config');
 const ADMIN_CONFIG = CONFIG.ADMIN;
 
 const accessLogStream = fs.createWriteStream(
-  CONFIG.LOG_PATH + '/website_admin_access.log', {
+  CONFIG.LOG_PATH + '/website-admin-access.log', {
     flags: 'a'
   }
 );

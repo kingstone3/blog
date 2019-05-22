@@ -1,7 +1,6 @@
-import expressWinston from 'express-winston';
-import winston from 'winston';
+const winston = require('winston');
 
-import COMMON_CONFIG from '<common>/config';
+const COMMON = require('./config');
 
 
 function createLogger(server) {
@@ -9,11 +8,12 @@ function createLogger(server) {
     transports: [
       new winston.transports.Console(),
       new winston.transports.File({
-        filename: `${COMMON_CONFIG.LOG_PATH}/${server}.log`
-      })
+        filename: `${COMMON.LOG_PATH}/${server}.log`
+      }),
     ]
-  })
+  });
 }
 
-export const accountLogger = 'website-account' |> createLogger;
-export const adminLogger = 'website-admin' |> createLogger;
+
+exports.accountLogger = createLogger('website-account');
+exports.adminLogger = createLogger('website-admin');
