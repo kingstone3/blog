@@ -1,16 +1,17 @@
-import Redis from 'ioredis';
+const redisStore = require('koa-redis');
 
-import COMMON_CONFIG from '<common>/config';
+const CONFIG = require('./config');
 
 
-const cache = new Redis({
-  host: COMMON_CONFIG.REDIS_HOST,
-  port: COMMON_CONFIG.REDIS_PORT,
-  db: 0
+const cache = redisStore({
+  host: CONFIG.REDIS_HOST,
+  port: CONFIG.REDIS_PORT,
+  db: 0,
 });
 
 cache.on('error', (err) => {
   console.log(`Cache error: ${err}`);
 });
 
-export default cache;
+
+module.exports = cache;
