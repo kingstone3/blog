@@ -12,6 +12,9 @@ var assetNode = new AssetRev('dist', {
       case 'text/css': {
         return CSS_VENDORS_VERSION;
       }
+      case 'image/svg+xml': {
+        return IMAGES_VENDORS_VERSION;
+      }
       default: {
         return null;
       }
