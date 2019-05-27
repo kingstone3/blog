@@ -1,7 +1,7 @@
 import Vue from 'vue';
+import { mapActions } from 'vuex'
 
 import '<utils>/importBaseComponents';
-import '<utils>/notice';
 
 import i18n from '<utils>/i18n';
 
@@ -14,4 +14,14 @@ new Vue({
   router,
   i18n,
   el: '#app',
+
+  methods: {
+    ...mapActions('ws', [
+      'connectWS',
+    ]),
+  },
+
+  mounted() {
+    this.connectWS();
+  },
 });

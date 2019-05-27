@@ -13,53 +13,53 @@ function actionBuilder(action) {
 const socketMap = {};
 
 const connectHandler = (conn) => {
-  const { session_id: sessionId } = conn;
+  // Check session
+  // const { session_id: sessionId } = conn;
 
-  if (!sessionId) {
-    conn.write(actionBuilder('BAD_REQUEST')({
-      action: 'OPEN',
-      detail: 'NO_SESSION_ID',
-    }));
+  // if (!sessionId) {
+  //   conn.write(actionBuilder('BAD_REQUEST')({
+  //     action: 'OPEN',
+  //     detail: 'NO_SESSION_ID',
+  //   }));
 
-    conn.close();
+  //   conn.close();
 
-    return;
-  }
+  //   return;
+  // }
 
-  const sessionSocket = socketMap[sessionId];
-  socketMap[sessionId] = Array.isArray(sessionSocket) ? sessionSocket.push(conn) : [conn];
+  // const sessionSocket = socketMap[sessionId];
+  // socketMap[sessionId] = Array.isArray(sessionSocket) ? sessionSocket.push(conn) : [conn];
 
   conn.on('data', dataHandler);
 
   conn.on('close', closeHandler);
-}
 
-function dataHandler(msg) {
-  const {action, data} = JSON.parse(msg);
+  function dataHandler(msg) {
+    const {action, data} = JSON.parse(msg);
 
-  const actionSender = actionBuilder(action);
+    const actionSender = actionBuilder(action);
 
-  switch(action) {
-    case 'SOCKJS_TEST': {
-      conn.write(actionSender({
-        result: 'OK',
-      }));
+    switch(action) {
+      case 'SOCKJS_TEST': {
+        conn.write(actionSender({
+          result: 'OK',
+        }));
 
-      break;
-    }
-    default: {
-      conn.write(actionBuilder('BAD_REQUEST')({
-        action,
-        detail: 'ACTION_NOT_ALLOWED'
-      }));
+        break;
+      }
+      default: {
+        conn.write(actionBuilder('BAD_REQUEST')({
+          action,
+          detail: 'ACTION_NOT_ALLOWED'
+        }));
+      }
     }
   }
+
+  function closeHandler(msg) {
+
+  }
 }
-
-function closeHandler(msg) {
-
-}
-
 
 const install = (server) => {
   const socket = sockjs.createServer({

@@ -18,7 +18,7 @@ export default new VueRouter({
   routes: [
     {
       path: '',
-      component: import(
+      component: () => import(
         /* webpackChunkName: "website_admin_layout" */
         '../pages/layout'
       ),

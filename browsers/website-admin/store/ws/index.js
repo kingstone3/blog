@@ -1,25 +1,20 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-
 import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
 
-import wsModule from './ws';
 
+export default {
+  namespaced: true,
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
   state() {
     return {
-
+      state: 'CLOSED',
+      history: [],
+      current: null,
+      previous: null,
     }
   },
   getters,
   mutations,
   actions,
-  modules: {
-    ws: wsModule,
-  },
-})
+}
