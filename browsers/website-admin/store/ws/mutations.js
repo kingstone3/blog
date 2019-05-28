@@ -3,9 +3,7 @@ export default {
     state.state = payload.state;
   },
 
-  reviceData(state, payload) {
-    state.previous = state.current;
-    state.current = payload;
-    state.history.push(payload);
+  reviceData(state, data) {
+    state.history.unshift(data);
   },
 }

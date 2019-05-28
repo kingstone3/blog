@@ -39,10 +39,11 @@ module.exports = {
             options: {
               loaders: {
                 js: 'happypack/loader?id=babel',
-              }
-            }
-          }
-        ]
+              },
+              postcss: [require('postcss-cssnext')()],
+            },
+          },
+        ],
       },
 
       // 普通的 `.scss` 文件和 `*.vue` 文件中的

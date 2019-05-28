@@ -10,8 +10,6 @@ export default {
     return {
       state: 'CLOSED',
       history: [],
-      current: null,
-      previous: null,
     }
   },
   getters,
