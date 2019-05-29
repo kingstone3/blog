@@ -8,6 +8,7 @@ ln -sf /var/lib/jenkins/workspace/website/servers/common /var/lib/jenkins/worksp
 
 cd browsers
 npm install
+npm rebuild node-sass
 npm run build
 
 cd ../servers
