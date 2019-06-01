@@ -10,20 +10,6 @@
     ],
   ],
 
-  "env": {
-    "production": {
-      "plugins": [
-        [
-          {
-            "mode": "remove",
-            "removeImport": true,
-            "ignoreFilenames": ["node_modules"]
-          }
-        ]
-      ]
-    }
-  },
-
   "ignore": ["node_modules"],
 
   "plugins": [

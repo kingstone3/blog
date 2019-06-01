@@ -38,7 +38,7 @@ const distPath = path.resolve('./dist');
 
 gulp.task('eslint', function() {
   return gulp
-    .src(['./(website-admin|website-account)/js/*.js'])
+    .src(['./(website-admin|website-account)/**/*.js'])
     .pipe(debug({ title: ansiColors.green('eslint:'), showFiles: false }))
     .pipe(eslint())
     .pipe(eslint.format())
@@ -89,8 +89,6 @@ gulp.task('webpack-dev', function() {
 
 gulp.task('webpack-prod', function(done) {
   const config = require('./webpack.prod');
-
-  config.mode = 'production';
 
   webpackTask(config, done);
 });
