@@ -8,8 +8,8 @@
     "url": "git@github.com:kingstone3/website.git"
   },
   "scripts": {
-    "start-account": "pm2 start website-account/bin/www --name 'website-account'",
-    "start-admin": "pm2 start website-admin/bin/www --name 'website-admin'",
+    "start-account": "pm2 restart website-account/bin/www --name 'website-account'",
+    "start-admin": "pm2 restart website-admin/bin/www --name 'website-admin'",
     "start-account-dev": "cd website-account && nodemon bin/www",
     "start-admin-dev": "cd website-admin && nodemon bin/www"
   },
