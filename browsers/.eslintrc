@@ -50,22 +50,13 @@
     "prefer-promise-reject-errors": "off"
   },
   "globals": {
-    "gettext": true,
-    "interpolate": true,
     "window": true,
-    "parent": true,
     "document": true,
     "alert": true,
     "USER": true,
     "APP": true,
     "XMLHttpRequest": true,
     "CONFIG": true,
-    "SHARED_LINK": true,
-    "SHARED_LINK_ERROR": true,
-    "SHARED_LINK_ID": true,
-    "PREVIEW_ENTRY": true,
-    "PDFJS": true,
-    "Raven": true,
     "ENV": true
   }
 }

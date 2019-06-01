@@ -1,4 +1,5 @@
 const path = require('path');
+const process = require('process');
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,9 +7,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackDevServerOutput = require('webpack-dev-server-output');
 const { VueLoaderPlugin } = require('vue-loader');
 const HappyPack = require('happypack');
+const autoprefixer = require('autoprefixer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const { JS_VENDORS_VERSION } = require('./common/config');
 
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
@@ -28,7 +34,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        use:  ['happypack/loader?id=babel']
+        use: ['happypack/loader?id=babel'],
       },
 
       {
@@ -40,7 +46,6 @@ module.exports = {
               loaders: {
                 js: 'happypack/loader?id=babel',
               },
-              postcss: [require('postcss-cssnext')()],
             },
           },
         ],
@@ -51,10 +56,27 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '/dist/js/',
+              hmr: devMode,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [autoprefixer('last 10 versions')],
+            },
+          },
+          'sass-loader',
+        ],
       },
 
       {
@@ -63,22 +85,19 @@ module.exports = {
           // 这条规则应用到 Vue 组件内的 `<template lang="pug">`
           {
             resourceQuery: /^\?vue/,
-            use: ['pug-plain-loader']
+            use: ['pug-plain-loader'],
           },
           // 这条规则应用到 JavaScript 内的 pug 导入
           {
-            use: [
-              'raw-loader',
-              'pug-plain-loader'
-            ]
-          }
-        ]
+            use: ['raw-loader', 'pug-plain-loader'],
+          },
+        ],
       },
 
       {
         resourceQuery: /blockType=i18n/,
         type: 'javascript/auto',
-        loader: '@kazupon/vue-i18n-loader'
+        loader: '@kazupon/vue-i18n-loader',
       },
     ],
   },
@@ -86,7 +105,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      vue: 'vue/dist/vue.esm.js'
+      vue: 'vue/dist/vue.esm.js',
     },
   },
 
@@ -101,6 +120,7 @@ module.exports = {
         },
       },
     },
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
   },
 
   plugins: [
@@ -116,6 +136,11 @@ module.exports = {
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: require(`${__dirname}/dll/common_vendors-${JS_VENDORS_VERSION}.manifest.json`),
+    }),
+
+    new MiniCssExtractPlugin({
+      filename: devMode ? '../css/[name].css' : '../css/[name].[hash].css',
+      chunkFilename: devMode ? '../css/[name]_[id].css' : '../css/[name]_[id].[hash].css',
     }),
 
     new HtmlWebpackPlugin({
@@ -134,7 +159,7 @@ module.exports = {
 
     new WebpackDevServerOutput({
       path: `${__dirname}/dist/js`,
-      isDel: true
+      isDel: true,
     }),
 
     new WebpackNotifierPlugin({

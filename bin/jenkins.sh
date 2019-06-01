@@ -1,4 +1,5 @@
 #!/bin/bash
+export NODE_ENV=production
 
 cp ${servers_config} servers/common/config.json
 cp ${browsers_config} browsers/common/config.json

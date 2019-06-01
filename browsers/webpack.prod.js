@@ -2,7 +2,6 @@ const Merge = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 
-
 module.exports = Merge(commonConfig, {
   mode: 'production',
 
@@ -22,8 +21,8 @@ module.exports = Merge(commonConfig, {
           drop_console: true,
           collapse_vars: true,
           reduce_vars: true,
-        }
+        },
       },
     }),
   ],
-})
+});

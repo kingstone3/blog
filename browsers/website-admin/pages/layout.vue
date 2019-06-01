@@ -79,29 +79,30 @@
 </template>
 
 <script>
-  import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex";
 
-  import tag from '<c>/common/tag';
+import tag from "<c>/common/tag";
 
-  export default {
-    components: {
-      tag,
-    },
+export default {
+  components: {
+    tag
+  },
 
-    data() {
-      return {
-        tagType: 'log',
-        tagSize: 'normal',
-        tagTittle: '标签标题',
-        tagDetail: '这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字',
-      }
-    },
+  data() {
+    return {
+      tagType: "log",
+      tagSize: "normal",
+      tagTittle: "标签标题",
+      tagDetail:
+        "这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字这是一段很长很长的文字"
+    };
+  },
 
-    computed: {
-      ...mapState('ws', ['state', 'history']),
-      ...mapGetters('ws', ['current', 'previous']),
-    },
-  };
+  computed: {
+    ...mapState("ws", ["state", "history"]),
+    ...mapGetters("ws", ["current", "previous"])
+  }
+};
 </script>
 
 <style type="scss"></style>

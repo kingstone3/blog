@@ -15,14 +15,9 @@ var assetNode = new AssetRev('dist', {
       case 'image/svg+xml': {
         return IMAGES_VENDORS_VERSION;
       }
-      default: {
-        return null;
-      }
     }
   },
-  exclude: [
-
-  ],
+  exclude: ['css/*'],
 });
 
 module.exports = assetNode;

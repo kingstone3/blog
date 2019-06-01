@@ -3,18 +3,9 @@ const path = require('path');
 const webpack = require('webpack');
 const { JS_VENDORS_VERSION } = require('./common/config');
 
-
 module.exports = {
   entry: {
-    'common_vendors': [
-      'vue',
-      'vuex',
-      'vue-router',
-      'vue-i18n',
-      'axios',
-      'lodash',
-      'sockjs-client',
-    ],
+    common_vendors: ['vue', 'vuex', 'vue-router', 'vue-i18n', 'axios', 'lodash', 'sockjs-client'],
   },
 
   output: {
