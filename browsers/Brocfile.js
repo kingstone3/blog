@@ -3,7 +3,7 @@ const AssetRev = require('broccoli-asset-rev');
 const { CSS_VENDORS_VERSION, IMAGES_VENDORS_VERSION } = require('./common/config');
 
 var assetNode = new AssetRev('dist', {
-  extensions: ['css', 'png', 'jpg', 'gif', 'svg'],
+  extensions: ['css', 'png', 'jpg', 'gif', 'svg', 'ico'],
   replaceExtensions: ['css', 'pug'],
   customHash(buffer, pathToFile) {
     const fileType = mime.getType(pathToFile);
@@ -13,6 +13,9 @@ var assetNode = new AssetRev('dist', {
         return CSS_VENDORS_VERSION;
       }
       case 'image/svg+xml': {
+        return IMAGES_VENDORS_VERSION;
+      }
+      case 'image/vnd.microsoft.icon': {
         return IMAGES_VENDORS_VERSION;
       }
     }
