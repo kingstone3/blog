@@ -9,7 +9,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HappyPack = require('happypack');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const { JS_VENDORS_VERSION } = require('./common/config');
@@ -120,7 +120,7 @@ module.exports = {
         },
       },
     },
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
   },
 
   plugins: [
