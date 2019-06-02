@@ -24,8 +24,8 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, './dist/js/'),
-    filename: 'chunk_[name].js',
-    chunkFilename: 'chunk_[name].js',
+    filename: '[name].js',
+    chunkFilename: '[name].js',
     publicPath: '/dist/js/',
   },
 
@@ -139,8 +139,8 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      filename: devMode ? '../css/[name].css' : '../css/[name].[hash].css',
-      chunkFilename: devMode ? '../css/[name]_[id].css' : '../css/[name]_[id].[hash].css',
+      filename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css',
+      chunkFilename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css',
     }),
 
     new HtmlWebpackPlugin({

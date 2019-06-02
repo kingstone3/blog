@@ -6,8 +6,8 @@ module.exports = Merge(commonConfig, {
   mode: 'production',
 
   output: {
-    filename: 'chunk_[name].[hash].js',
-    chunkFilename: 'chunk_[name].[chunkhash].js',
+    filename: '[name]-[hash].js',
+    chunkFilename: '[name]-[chunkhash].js',
   },
 
   plugins: [
