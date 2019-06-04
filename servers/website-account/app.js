@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const bodyparser = require('koa-bodyparser');
 const fs = require('fs');
-const helmet = require("koa-helmet");
+const helmet = require('koa-helmet');
 const json = require('koa-json');
 const morgan = require('koa-morgan');
 const onerror = require('koa-onerror');
@@ -15,11 +15,11 @@ const users = require('./routes/users');
 
 const CONFIG = require('./common/config');
 
-
-const ACCOUNT_CONFIG = CONFIG.ACCOUNT;
+// const ACCOUNT_CONFIG = CONFIG.ACCOUNT;
 
 const accessLogStream = fs.createWriteStream(
-  CONFIG.LOG_PATH + '/website-account-access.log', {
+  CONFIG.LOG_PATH + '/website-account-access.log',
+  {
     flags: 'a'
   }
 );
@@ -30,31 +30,44 @@ app.keys = ['keys', 'keykeys'];
 // error handler
 onerror(app);
 
+app.use(
+  morgan('combined', {
+    stream: accessLogStream
+  })
+);
+
 // middlewares
-app.use(helmet({
-  dnsPrefetchControl: false,
-}));
+app.use(
+  helmet({
+    dnsPrefetchControl: false
+  })
+);
 
-app.use(session({
-  store: redisStore({
-    host: CONFIG.REDIS_HOST,
-    port: CONFIG.REDIS_PORT,
-    db: 0,
-  }),
-}));
+app.use(
+  session({
+    store: redisStore({
+      host: CONFIG.REDIS_HOST,
+      port: CONFIG.REDIS_PORT,
+      db: 0
+    })
+  })
+);
 
-app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
-}));
+app.use(
+  bodyparser({
+    enableTypes: ['json', 'form', 'text']
+  })
+);
 app.use(json());
 
-app.use(views(path.join(
-    __dirname,
-    '../../browsers/dist/website-account/templates/pug'
-  ), {
-    extension: 'pug'
-  }
-));
+app.use(
+  views(
+    path.join(__dirname, '../../browsers/dist/website-account/templates/pug'),
+    {
+      extension: 'pug'
+    }
+  )
+);
 
 // routes
 app.use(index.routes(), index.allowedMethods());

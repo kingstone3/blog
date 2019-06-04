@@ -1,4 +1,3 @@
-const process = require('process');
 const path = require('path');
 const webpack = require('webpack');
 const { JS_VENDORS_VERSION } = require('./common/config');

@@ -8,7 +8,7 @@ servers/website-account/common
 servers/website-admin/common
 servers/common/common
 
-browsers/dll/*
+browsers/dll
 browsers/libs/common_vendors*.js
 browsers/libs/common_vendors*.css
 

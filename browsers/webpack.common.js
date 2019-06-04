@@ -11,7 +11,6 @@ const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const { JS_VENDORS_VERSION } = require('./common/config');
 
@@ -50,19 +49,6 @@ module.exports = {
             }
           }
         ]
-      },
-
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        //指定检查的目录
-        exclude: /node_modules/,
-        //eslint检查报告的格式规范
-        options: {
-          formatter: require('eslint-friendly-formatter'),
-          fix: true
-        }
       },
 
       // 普通的 `.scss` 文件和 `*.vue` 文件中的
@@ -157,11 +143,6 @@ module.exports = {
       chunkFilename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css'
     }),
 
-    new StyleLintPlugin({
-      files: ['(website-accoount|website-admin|common|scss)/**/*.{vue,htm,html,css,sss,less,scss,sass}'],
-      fix: true
-    }),
-
     new HtmlWebpackPlugin({
       template: './website-admin/templates/index.template',
       filename: `${__dirname}/dist/website-admin/templates/pug/index.pug`,
@@ -186,6 +167,8 @@ module.exports = {
       alwaysNotify: true
     }),
 
+    /* eslint-disable */
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh/)
+    /* eslint-enable */
   ]
 };

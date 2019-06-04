@@ -10,7 +10,7 @@ function actionBuilder(action) {
   }
 }
 
-const socketMap = {};
+// const socketMap = {};
 
 const connectHandler = (conn) => {
   // Check session
@@ -35,7 +35,7 @@ const connectHandler = (conn) => {
   conn.on('close', closeHandler);
 
   function dataHandler(msg) {
-    const {action, data} = JSON.parse(msg);
+    const {action} = JSON.parse(msg);
 
     const actionSender = actionBuilder(action);
 
@@ -56,7 +56,7 @@ const connectHandler = (conn) => {
     }
   }
 
-  function closeHandler(msg) {
+  function closeHandler() {
 
   }
 }
@@ -73,17 +73,17 @@ const install = (server) => {
 
 
 // 注意判断 socketMap 里是否含有 sessionid
-const send = (action, detail) => {
+// const send = (action, detail) => {
 
-}
+// }
 
-const broadcast = (action, detail) => {
+// const broadcast = (action, detail) => {
 
-}
+// }
 
 
 module.exports = {
   install,
-  send,
-  broadcast,
+  // send,
+  // broadcast,
 }

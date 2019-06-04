@@ -1,8 +1,8 @@
-const axios = require('axios');
+// const axios = require('axios');
 
-const CONFIG = require('./config');
+const COMMON_CONFIG = require('./config');
 
-let instance = axios.create()
+// let instance = axios.create();
 
 module.exports = class BaseRequest {
   constructor(requestParams) {
@@ -20,4 +20,4 @@ module.exports = class BaseRequest {
     this.nameSpace = this.parseNameSpace();
     this.authorization = this.parseAuthorization();
   }
-}
+};
