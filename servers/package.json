@@ -2,7 +2,7 @@
   "name": "website",
   "version": "0.0.1",
   "description": "",
-  "main": "server/app.js",
+  "main": "",
   "repository": {
     "type": "git",
     "url": "git@github.com:kingstone3/website.git"

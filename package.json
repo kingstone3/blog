@@ -1,0 +1,26 @@
+{
+  "name": "website",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "prepush": "npm run lint_browsers && npm run lint_servers",
+    "lint_browsers": "cd browsers && npm run lint",
+    "lint_servers": "cd servers && npm run lint",
+    "dev": "npm install && cd browsers && npm install && cd ../servers && npm install",
+    "deploy": "git checkout DEPLOY && git merge master && git push origin DEPLOY"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingstone3/website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kingstone3/website/issues"
+  },
+  "homepage": "https://github.com/kingstone3/website#readme",
+  "dependencies": {
+    "husky": "^2.3.0"
+  }
+}
