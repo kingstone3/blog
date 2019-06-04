@@ -40,20 +40,16 @@ export default {
 
   .tag-wrapper {
     width: 300px;
-
     padding-left: 40px;
     margin-bottom: 8px;
-
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-
     transition: border-radius 1s;
 
     .tag {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-
       padding: 8px;
 
       &__title {
@@ -62,14 +58,13 @@ export default {
 
       &__detail {
         width: 284px;
-
         font-size: 12px;
         color: #383838;
         line-height: 18px;
-
         overflow: hidden;
 
-        &--hidden, &--mini {
+        &--hidden,
+        &--mini {
           @include mini-detail();
         }
       }
@@ -77,7 +72,6 @@ export default {
 
     &--hidden {
       height: 64px;
-
       border-top-left-radius: 64px;
       border-bottom-left-radius: 64px;
     }
@@ -88,13 +82,15 @@ export default {
 
     &--log {
       background: #52becf;
+
       .tag {
         background: #c3eff7;
       }
     }
-    
+
     &--warn {
-      background: #FFCC33;
+      background: #fc3;
+
       .tag {
         background: #ffe8a5;
       }
@@ -102,13 +98,15 @@ export default {
 
     &--success {
       background: #bde540;
+
       .tag {
         background: #e9ffad;
       }
     }
-    
+
     &--error {
       background: #ed6358;
+
       .tag {
         background: #ffc4bc;
       }

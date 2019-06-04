@@ -1,13 +1,10 @@
 const path = require('path');
 const gulp = require('gulp');
-const eslint = require('gulp-eslint');
-const debug = require('gulp-debug');
 const notify = require('gulp-notify');
 const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const ansiColors = require('ansi-colors');
 
 const webpack = require('webpack');
 const webpackDevServer = require('webpack-dev-server');
@@ -35,15 +32,6 @@ const webpackTask = function(config, done) {
 };
 
 const distPath = path.resolve('./dist');
-
-gulp.task('eslint', function() {
-  return gulp
-    .src(['./(website-admin|website-account)/**/*.js'])
-    .pipe(debug({ title: ansiColors.green('eslint:'), showFiles: false }))
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
 
 // @() 的意思是从这一层级开始进行操作
 gulp.task('copyTemplates', function() {
@@ -120,14 +108,14 @@ gulp.task('scss', function() {
       })
     )
     .pipe(postcss([autoprefixer()]))
-    .pipe(gulp.dest(`./libs`));
+    .pipe(gulp.dest('./libs'));
 });
 
 gulp.task('minify-css', function() {
   return gulp
-    .src(`./libs/**/*.css`)
+    .src('./libs/**/*.css')
     .pipe(cleanCSS())
-    .pipe(gulp.dest(`./libs`));
+    .pipe(gulp.dest('./libs'));
 });
 
 gulp.task('watch', function() {

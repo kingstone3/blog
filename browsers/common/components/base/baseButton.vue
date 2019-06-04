@@ -71,6 +71,6 @@ export default {
 -->
 <style scoped lang='scss'>
   .disabled {
-    color: red
+    color: red;
   }
 </style>

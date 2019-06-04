@@ -20,7 +20,8 @@ module.exports = {
     es6: true,
     browser: true,
     amd: true,
-    commonjs: true
+    commonjs: true,
+    node: true
   },
   //访问当前源文件中未定义的变量时，no-undef会报警告。
   //如果这些全局变量是合规的，可以在globals中配置，避免这些全局变量发出警告

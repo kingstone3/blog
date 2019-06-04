@@ -9,6 +9,7 @@ servers/website-admin/common
 servers/common/common
 
 browsers/dll/*
-browsers/libs/common_vendors-*.js
+browsers/libs/common_vendors*.js
+browsers/libs/common_vendors*.css
 
 package-lock.json

@@ -11,6 +11,7 @@ const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const { JS_VENDORS_VERSION } = require('./common/config');
 
@@ -154,6 +155,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css',
       chunkFilename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css'
+    }),
+
+    new StyleLintPlugin({
+      files: ['(website-accoount|website-admin|common|scss)/**/*.{vue,htm,html,css,sss,less,scss,sass}'],
+      fix: true
     }),
 
     new HtmlWebpackPlugin({
