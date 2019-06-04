@@ -2,7 +2,6 @@ import Vue from 'vue';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 
-
 // require.context 是 webpack 的方法，在编译阶段执行
 const requireComponent = require.context(
   // 其组件目录的相对路径
@@ -28,5 +27,5 @@ requireComponent.keys().forEach(fileName => {
   // 如果这个组件选项是通过 `export default` 导出的，
   // 那么就会优先使用 `.default`，
   // 否则回退到使用模块的根。
-  |> Vue.component(#, componentConfig.default ?? componentConfig)
+  |> ( _ => Vue.component(_, componentConfig.default ?? componentConfig))
 });

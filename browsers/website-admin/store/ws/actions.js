@@ -23,7 +23,7 @@ export default {
 
     function connect() {
       return new SockJS('/sockjs', [], {});
-    };
+    }
 
     let timerId;
 
@@ -45,7 +45,7 @@ export default {
       });
 
       return sockjs;
-    };
+    }
 
     function registerMessageHandler(sockjs) {
       sockjs.addEventListener('message', (e) => {
@@ -53,7 +53,7 @@ export default {
       });
 
       return sockjs;
-    };
+    }
 
     function registerCloseHandler(sockjs) {
       sockjs.addEventListener('close', () => {
@@ -65,7 +65,7 @@ export default {
       });
 
       return sockjs;
-    };
+    }
 
     initSocket();
   },

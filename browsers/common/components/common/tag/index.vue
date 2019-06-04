@@ -12,24 +12,24 @@
 </template>
 
 <script>
-  import VueType from 'vue-types';
+import VueType from 'vue-types';
   
-  export default {
-    functional: true,
+export default {
+  functional: true,
 
-    props: {
-      type: VueType.oneOf(
-        ['log', 'warn', 'success', 'error']
-      ).def('log'),
+  props: {
+    type: VueType.oneOf(
+      ['log', 'warn', 'success', 'error']
+    ).def('log'),
 
-      size: VueType.oneOf(
-        ['hidden', 'mini', 'normal']
-      ).def('mini'),
+    size: VueType.oneOf(
+      ['hidden', 'mini', 'normal']
+    ).def('mini'),
 
-      tittle: VueType.string.isRequired,
-      detail: VueType.string.isRequired,
-    }
+    tittle: VueType.string.isRequired,
+    detail: VueType.string.isRequired,
   }
+}
 </script>
 
 <style scoped lang='scss'>

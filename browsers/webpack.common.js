@@ -19,14 +19,14 @@ const devMode = process.env.NODE_ENV !== 'production';
 module.exports = {
   entry: {
     website_account: ['./website-account/pages/'],
-    website_admin: ['./website-admin/pages/'],
+    website_admin: ['./website-admin/pages/']
   },
 
   output: {
     path: path.resolve(__dirname, './dist/js/'),
     filename: '[name].js',
     chunkFilename: '[name].js',
-    publicPath: '/dist/js/',
+    publicPath: '/dist/js/'
   },
 
   module: {
@@ -34,7 +34,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        use: ['happypack/loader?id=babel'],
+        use: ['happypack/loader?id=babel']
       },
 
       {
@@ -44,11 +44,24 @@ module.exports = {
             loader: 'vue-loader',
             options: {
               loaders: {
-                js: 'happypack/loader?id=babel',
-              },
-            },
-          },
-        ],
+                js: 'happypack/loader?id=babel'
+              }
+            }
+          }
+        ]
+      },
+
+      {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        //指定检查的目录
+        exclude: /node_modules/,
+        //eslint检查报告的格式规范
+        options: {
+          formatter: require('eslint-friendly-formatter'),
+          fix: true
+        }
       },
 
       // 普通的 `.scss` 文件和 `*.vue` 文件中的
@@ -60,23 +73,23 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: '/dist/js/',
-              hmr: devMode,
-            },
+              hmr: devMode
+            }
           },
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
-            },
+              importLoaders: 1
+            }
           },
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [autoprefixer('last 10 versions')],
-            },
+              plugins: [autoprefixer('last 10 versions')]
+            }
           },
-          'sass-loader',
-        ],
+          'sass-loader'
+        ]
       },
 
       {
@@ -85,28 +98,28 @@ module.exports = {
           // 这条规则应用到 Vue 组件内的 `<template lang="pug">`
           {
             resourceQuery: /^\?vue/,
-            use: ['pug-plain-loader'],
+            use: ['pug-plain-loader']
           },
           // 这条规则应用到 JavaScript 内的 pug 导入
           {
-            use: ['raw-loader', 'pug-plain-loader'],
-          },
-        ],
+            use: ['raw-loader', 'pug-plain-loader']
+          }
+        ]
       },
 
       {
         resourceQuery: /blockType=i18n/,
         type: 'javascript/auto',
-        loader: '@kazupon/vue-i18n-loader',
-      },
-    ],
+        loader: '@kazupon/vue-i18n-loader'
+      }
+    ]
   },
 
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      vue: 'vue/dist/vue.esm.js',
-    },
+      vue: 'vue/dist/vue.esm.js'
+    }
   },
 
   optimization: {
@@ -116,11 +129,11 @@ module.exports = {
         vendors: {
           name: 'website_vendors',
           chunks: 'initial',
-          minChunks: 2,
-        },
-      },
+          minChunks: 2
+        }
+      }
     },
-    minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})]
   },
 
   plugins: [
@@ -130,43 +143,43 @@ module.exports = {
 
     new HappyPack({
       id: 'babel',
-      loaders: ['babel-loader?cacheDirectory'],
+      loaders: ['babel-loader?cacheDirectory']
     }),
 
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require(`${__dirname}/dll/common_vendors-${JS_VENDORS_VERSION}.manifest.json`),
+      manifest: require(`${__dirname}/dll/common_vendors-${JS_VENDORS_VERSION}.manifest.json`)
     }),
 
     new MiniCssExtractPlugin({
       filename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css',
-      chunkFilename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css',
+      chunkFilename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css'
     }),
 
     new HtmlWebpackPlugin({
       template: './website-admin/templates/index.template',
       filename: `${__dirname}/dist/website-admin/templates/pug/index.pug`,
-      inject: false,
+      inject: false
     }),
 
     new HtmlWebpackPlugin({
       template: './website-account/templates/index.template',
       filename: `${__dirname}/dist/website-account/templates/pug/index.pug`,
-      inject: false,
+      inject: false
     }),
 
     new webpack.HotModuleReplacementPlugin(),
 
     new WebpackDevServerOutput({
       path: `${__dirname}/dist/js`,
-      isDel: true,
+      isDel: true
     }),
 
     new WebpackNotifierPlugin({
       title: 'Webpack Finished',
-      alwaysNotify: true,
+      alwaysNotify: true
     }),
 
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh/),
-  ],
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh/)
+  ]
 };

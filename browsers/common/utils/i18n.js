@@ -18,7 +18,7 @@ const i18n = new VueI18n({
 export const setup = lang => {
   if (!lang) {
     lang = window.localStorage.getItem(config.LOCAL_LANGUAGE_KEY);
-
+  
     if (!messages[lang]) {
       lang = config.DEFAULT_LANGUAGE;
     }

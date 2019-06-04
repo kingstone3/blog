@@ -20,48 +20,48 @@
   prop 是用户控制；isClick 是组件内部控制。
 -->
 <script>
-  export default {
-    name: 'baseButton',
-    data() {
+export default {
+  name: 'baseButton',
+  data() {
+    return {
+      isClick: false
+    }
+  },
+  props: {
+    type: {
+      type: String,
+      default: 'button'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    classObj() {
       return {
-        isClick: false
-      }
-    },
-    props: {
-      type: {
-        type: String,
-        default: 'button'
-      },
-      disabled: {
-        type: Boolean,
-        default: false
-      }
-    },
-    computed: {
-      classObj() {
-        return {
-          'disabled': this.isClick,
-        }
-      }
-    },
-    methods: {
-      handleClick() {
-        this.isClick = true;
-
-        const clickPromise = this.$listeners.click()
-
-        if (clickPromise instanceof Promise) {
-          clickPromise.then(() => {
-            this.isClick = false;
-          }).catch(() => {
-            this.isClick = false;
-          });
-        } else {
-          this.isClick = false;
-        }
+        'disabled': this.isClick,
       }
     }
-  };
+  },
+  methods: {
+    handleClick() {
+      this.isClick = true;
+
+      const clickPromise = this.$listeners.click()
+
+      if (clickPromise instanceof Promise) {
+        clickPromise.then(() => {
+          this.isClick = false;
+        }).catch(() => {
+          this.isClick = false;
+        });
+      } else {
+        this.isClick = false;
+      }
+    }
+  }
+};
 </script>
 
 <!--
