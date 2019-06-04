@@ -8,7 +8,7 @@
     "lint_browsers": "cd browsers && npm run lint",
     "lint_servers": "cd servers && npm run lint",
     "dev": "npm install && cd browsers && npm install && cd ../servers && npm install",
-    "deploy": "git checkout DEPLOY && git merge master && git push origin DEPLOY"
+    "deploy": "git checkout DEPLOY && git merge master && git push origin DEPLOY && git checkout dev"
   },
   "repository": {
     "type": "git",
