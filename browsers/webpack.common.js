@@ -141,6 +141,8 @@ module.exports = {
 
     new VueLoaderPlugin(),
 
+    new webpack.optimize.ModuleConcatenationPlugin(),
+
     new HappyPack({
       id: 'babel',
       loaders: ['babel-loader?cacheDirectory']

@@ -11,5 +11,6 @@ servers/common/common
 browsers/dll
 browsers/libs/common_vendors*.js
 browsers/libs/common_vendors*.css
+browsers/stats.json
 
 package-lock.json

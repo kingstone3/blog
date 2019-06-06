@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "sh bin/gulp-build.sh",
-    "lint": "stylelint '(website-accoount|website-admin|common|scss)/**/*.{vue,scss}' --fix && eslint . --fix"
+    "lint": "stylelint '(website-accoount|website-admin|common|scss)/**/*.{vue,scss}' --fix && eslint . --fix",
+    "analyse": "webpack --config webpack.prod.js --profile --json > stats.json && webpack-bundle-analyzer stats.json"
   },
   "license": "Apache-2.0",
   "bundleDependencies": [],
@@ -68,7 +69,9 @@
     "vue-template-compiler": "^2.6.10",
     "vue-types": "^1.5.3",
     "vuex": "^3.1.1",
-    "webpack": "^4.30.0",
+    "webpack": "^4.33.0",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.3.1",
     "webpack-dev-server-output": "0.0.6",
     "webpack-merge": "^4.1.3",
