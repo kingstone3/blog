@@ -32,6 +32,8 @@
     "koa-router": "^7.1.1",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.0",
+    "nodemon": "^1.19.1",
+    "pm2": "^3.5.1",
     "pug": "^2.0.0-rc.1",
     "sockjs": "^0.3.19",
     "winston": "^3.2.1"

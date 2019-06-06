@@ -2,8 +2,8 @@
 
 | a      | b                                |
 | ------ | -------------------------------- |
-| NodeJS | 首先通过 yum 安装，后通过 n 管理 |
-| NPM    | 随 NodeJS 安装，后升级到新版本   |
+| NodeJS | 通过 yum 安装 |
+| NPM    | 随 NodeJS 安装   |
 | redis  | 前端缓存                     |
 | Nginx  | 需配置代理规则                   |
 | Jenkins | 持续集成                   |
@@ -15,11 +15,10 @@
 ### Local
 | a      | b                                |
 | ------ | -------------------------------- |
-| NodeJS | 首先通过 yum 安装，后通过 n 管理 |
-| NPM    | 随 NodeJS 安装，后升级到新版本   |
+| NodeJS | 通过 yum 安装 |
+| NPM    | 随 NodeJS 安装 |
 | redis  | 前端缓存                     |
 | Nginx  | 需配置代理规则                   |
-| nodemon | 自动重启 node                  |
 > 1. 安装完成后需要将 servers/common 软链接到 servers/website-account/common 和 servers/website-admin/common
 > 2. 安装完成后需要 touch servers/common/config.json 和 browsers/common/config.json
 
