@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/kingstone3/website#readme",
   "dependencies": {
-    "husky": "^2.3.0"
+    "husky": "^2.4.0"
   }
 }
