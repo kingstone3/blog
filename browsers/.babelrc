@@ -1,16 +1,17 @@
 {
   "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "targets": {
-          "browsers": ["last 2 versions", "safari >= 9"]
-        }
-      }
-    ]
+    // 注释这些使 babel 不转换 es6 代码: env = 15 + 16 + 17
+    // [
+    //   "@babel/preset-env",
+    //   {
+    //     "targets": {
+    //       "browsers": ["last 2 versions", "safari >= 9"]
+    //     }
+    //   }
+    // ]
   ],
 
-  "ignore": ["node_modules"],
+  // "ignore": ["node_modules"],
 
   "plugins": [
     [

@@ -32,8 +32,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js?$/,
-        exclude: /node_modules/,
+        test: /\.js$/,
+        // exclude: /node_modules/,
         use: ['happypack/loader?id=babel']
       },
 
@@ -95,6 +95,11 @@ module.exports = {
       },
 
       {
+        test: /\.svg$/,
+        use: ['svg-inline-loader']
+      },
+
+      {
         resourceQuery: /blockType=i18n/,
         type: 'javascript/auto',
         loader: '@kazupon/vue-i18n-loader'
@@ -104,6 +109,8 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.vue', '.json'],
+    modules: [path.resolve(__dirname, 'node_modules')],
+    mainFields: ['jsnext:main', 'browser', 'main'],
     alias: {
       vue: 'vue/dist/vue.esm.js'
     }
@@ -120,7 +127,13 @@ module.exports = {
         }
       }
     },
-    minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})]
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true
+      }),
+      new OptimizeCSSAssetsPlugin()
+    ]
   },
 
   plugins: [

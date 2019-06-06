@@ -13,7 +13,7 @@
 
 <script>
 import VueType from 'vue-types';
-  
+
 export default {
   functional: true,
 

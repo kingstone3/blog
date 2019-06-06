@@ -12,7 +12,7 @@ module.exports = Merge(commonConfig, {
 
   plugins: [
     new ParallelUglifyPlugin({
-      uglifyJS: {
+      uglifyES: {
         output: {
           beautify: false,
           comments: false,
