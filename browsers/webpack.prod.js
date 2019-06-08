@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const Merge = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
@@ -11,6 +12,10 @@ module.exports = Merge(commonConfig, {
   },
 
   plugins: [
+    new webpack.EnvironmentPlugin({
+      'process.env': JSON.stringify('production')
+    }),
+    
     new ParallelUglifyPlugin({
       uglifyES: {
         output: {

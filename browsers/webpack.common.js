@@ -1,5 +1,4 @@
 const path = require('path');
-const process = require('process');
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -11,10 +10,11 @@ const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob');
 
 const { JS_VENDORS_VERSION } = require('./common/config');
 
-const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
@@ -59,8 +59,8 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: '/dist/js/',
-              hmr: devMode
+              publicPath: '/dist/css/',
+              hmr: process.env.NODE_ENV !== 'production'
             }
           },
           {
@@ -72,7 +72,7 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [autoprefixer('last 10 versions')]
+              plugins: [autoprefixer('last 2 versions')]
             }
           },
           'sass-loader'
@@ -154,8 +154,13 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      filename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css',
-      chunkFilename: devMode ? '../css/[name].css' : '../css/[name]-[hash].css'
+      filename: process.env.NODE_ENV !== 'production' ? '../css/[name].css' : '../css/[name]-[hash].css',
+      chunkFilename: process.env.NODE_ENV !== 'production' ? '../css/[name].css' : '../css/[name]-[hash].css'
+    }),
+
+    new PurgecssPlugin({
+      paths: glob.sync(path.join(__dirname, './**/*.vue')),
+      whitelistPatterns: [/--/, /__/]
     }),
 
     new HtmlWebpackPlugin({
